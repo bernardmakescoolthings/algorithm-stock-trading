@@ -1,0 +1,8 @@
+Usage:
+
+python run.py (initial investment $$) (number of stocks invest)
+              (type 0 - regular, type 1 - penny) (0 - file output, 1-print output)
+
+git clone https://github.com/Jamonek/Robinhood.git
+git clone https://github.com/bukosabino/ta.git\
+pip install backtesting
