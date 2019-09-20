@@ -16,6 +16,7 @@ environment.
 """
 
 import numpy as np
+from sklearn.neighbors import KNeighborsClassifier
 import os
 import sys
 import time
