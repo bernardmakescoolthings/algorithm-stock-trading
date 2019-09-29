@@ -1,0 +1,6 @@
+akam
+goog
+aapl
+amzn
+nvda
+msft

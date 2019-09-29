@@ -84,28 +84,32 @@ def scrape_all_articles(ticker , upper_page_limit = 5):
 
 
 #############################################################
+tickers = open('stockProspects.txt', "r")
+for ticker in tickers:
 
-ticker = sys.argv[1]
+    ticker = ticker.strip()
 
-articles = scrape_all_articles(ticker)
+    print(ticker)
 
-today = date.today()
-date = today.strftime("%m-%d-%Y")
+    articles = scrape_all_articles(ticker)
 
-filename = 'newsLogs/' + ticker + '/' + date + ".txt"
+    today = date.today()
+    dateStr = today.strftime("%m-%d-%Y")
 
-if not os.path.exists(os.path.dirname(filename)):
-    try:
-        os.makedirs(os.path.dirname(filename))
-    except OSError as exc: # Guard against race condition
-        if exc.errno != errno.EEXIST:
-            raise
+    filename = 'newsLogs/' + ticker + '/' + dateStr + ".txt"
 
-f = open(filename, "w+")
+    if not os.path.exists(os.path.dirname(filename)):
+        try:
+            os.makedirs(os.path.dirname(filename))
+        except OSError as exc: # Guard against race condition
+            if exc.errno != errno.EEXIST:
+                raise
 
-for article in articles:
-    for line in article.split('\n'):
-        f.write(line)
-        f.write('\n')
+    f = open(filename, "w+")
 
-f.close()
+    for article in articles:
+        for line in article.split('\n'):
+            f.write(line)
+            f.write('\n')
+
+    f.close()
