@@ -198,4 +198,4 @@ while end + 1 < len(df):
     start += 1
     end += 1
 print("Total Profit:", profit)
-print("Win Percentage:", wins/losses + wins)
+print("Win Percentage:", wins/ (losses + wins))

@@ -1,0 +1,15 @@
+The program will takes a csv from Yahoo finance (Download full History if Possible). 
+
+The program will loop through the whole csv in chronological order buying and selling
+if it has decided the technical analysis indicators are in its favor. 
+
+The program is not day trading. The program will simulate buying a stock, holding it
+for the target period and then selling at the close of that day.
+
+taLearn.py
+
+arg1 - path to dataset (.csv)
+arg2 - Period - The amount of previous days to train on to make an estimation for the
+                the target day.
+arg3 - Target Period - The amount of days to sell after.
+
