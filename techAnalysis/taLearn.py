@@ -148,7 +148,7 @@ dataArray = df.to_numpy()
 
 
 print("Entering Program")
-start = 1000;
+start = 0;
 end = start + PERIOD;
 
 
@@ -170,17 +170,16 @@ while end + 1 < len(df):
     #print(targetAtts.shape)
     #print(xTrain.shape)
 
-    model = MLPRegressor(solver = 'adam', activation = 'relu', hidden_layer_sizes = [128,128, 128, 128,128, 128, 128], momentum = 1)
+    model = MLPRegressor(solver = 'adam', activation = 'relu', hidden_layer_sizes = [128, 128, 128, 128])
     model.fit(xTrain, yTrain)
     pred = model.predict(targetAtts)[0]
 
     #Do something with percentage here
-
+    print("--------------")
     print(pred, " | ", targetLabel)
 
     if pred > 0:
-        print("--------------")
-
+        print("Bought in! Profit: ", targetLabel)
 
         """
         targetOpen = dataArray[end + 1][0]
@@ -189,12 +188,12 @@ while end + 1 < len(df):
         """
 
         profit += targetLabel
-        print("Current Profit:" , profit)
+        print("Current Total Profit:" , profit)
         if targetLabel > 0:
             wins += 1
         else:
             losses += 1
-        print("Wins: ", wins, " | Losses:", losses)
+        print("Wins: ", wins, " | Losses:", losses, "\n")
 
     start += 1
     end += 1
