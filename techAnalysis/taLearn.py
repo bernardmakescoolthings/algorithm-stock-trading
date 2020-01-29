@@ -9,8 +9,6 @@ import pandas as pd
 import ta
 import sys
 
-from PIL import Image
-
 from sklearn import preprocessing
 from sklearn.neural_network import MLPRegressor
 from sklearn.decomposition import PCA
