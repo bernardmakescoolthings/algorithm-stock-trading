@@ -94,7 +94,6 @@ def populateDataframe(df):
 print("Loading Dataframe")
 
 df = pd.read_csv(CSV)
-INITIALDF = copy.copy(df)
 #Trim dates
 dropList = []
 if START_DATE != '0':
@@ -103,6 +102,7 @@ if START_DATE != '0':
         dropList.append(index)
         index += 1
 df = df.drop(dropList)
+INITIALDF = copy.copy(df)
 
 print("Populating Dataframe")
 df = populateDataframe(df)
@@ -115,7 +115,7 @@ for i in range(len(df)):
     #difference = df.iloc[i + PERIOD].Close - df.iloc[i].Close
 
     #For one day do difference in open and Close
-    difference = df.iloc[i].Close - df.iloc[i+TARGET_PERIOD].Close
+    difference = df.iloc[i+TARGET_PERIOD].Close - df.iloc[i].Close
 
     #Can do binary here or regression
     #if(difference > 0):
@@ -209,7 +209,7 @@ while end + 1 < len(df):
         sharePrice = INITIALDF.iloc[end]['Close']
         sharesToBuy = math.floor((currentMoney/PERIOD)/sharePrice)
         currentMoney -= sharePrice * sharesToBuy
-        print("\tBuying", sharesToBuy, "Shares")
+        print("\tBuying", sharesToBuy, "Shares at", sharePrice)
         tracker.append({
                         "Shares": sharesToBuy,
                         "Profit": targetLabel,
@@ -225,7 +225,7 @@ while end + 1 < len(df):
                         "BuyInvestment": 0,
                         "Buy": False,
                         })
-                        
+
     if tracker[dayCnt].get("Buy") == True:
         tradeProfit = tracker[dayCnt].get("Profit") * tracker[dayCnt].get("Shares")
         profit += tradeProfit
@@ -246,8 +246,6 @@ while end + 1 < len(df):
         print("\tReturn:", currentMoney/INITIALINVEST)
         print("\tDays Elapsed:", dayCnt)
         print("\n")
-    if(dayCnt == 20):
-        sys.exit()
     dayCnt += 1
     start += 1
     end += 1
