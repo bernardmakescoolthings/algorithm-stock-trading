@@ -1,28 +1,29 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[1]:
-
-
 import numpy as np
 import pandas as pd
 import ta
 import sys
+import math
+import copy
 
 from sklearn import preprocessing
 from sklearn.neural_network import MLPRegressor
 from sklearn.decomposition import PCA
 
-if len(sys.argv) != 4:
+#Supress Warnings
+import warnings
+warnings.filterwarnings("ignore")
+
+
+if len(sys.argv) != 5:
     print("Error with command line arguments")
+    sys.exit()
 else:
     CSV = sys.argv[1]
     PERIOD = int(sys.argv[2])
     TARGET_PERIOD = int(sys.argv[3])
+    START_DATE = sys.argv[4]
 
-def populateDataframe(csv):
-
-    df = pd.read_csv(csv)
+def populateDataframe(df):
 
     # ## Momentum Indicators
     df['Awesome'] = ta.momentum.ao(df['High'], df['Low'])
@@ -90,8 +91,21 @@ def populateDataframe(csv):
 
     return df;
 
+print("Loading Dataframe")
+
+df = pd.read_csv(CSV)
+INITIALDF = copy.copy(df)
+#Trim dates
+dropList = []
+if START_DATE != '0':
+    index = 0
+    while df.iloc[index]['Date'] != START_DATE:
+        dropList.append(index)
+        index += 1
+df = df.drop(dropList)
+
 print("Populating Dataframe")
-df = populateDataframe(CSV)
+df = populateDataframe(df)
 
 print("Calculating Labels from Target Period")
 for i in range(len(df)):
@@ -111,6 +125,8 @@ for i in range(len(df)):
 
 # In[67]:
 df.to_csv("TmpDataframe.csv", sep='\t')
+
+dateDf = df['Date']
 
 df = df.drop(['Date'], axis=1)
 df = df.fillna(0)
@@ -145,13 +161,26 @@ df["Labels"] = labels
 dataArray = df.to_numpy()
 
 
+INITIALINVEST = 30000
+
+currentMoney = INITIALINVEST
+
+tracker = []
+for i in range(TARGET_PERIOD):
+    tracker.append({
+                    "Shares": 0,
+                    "Profit": 0,
+                    "BuyPrice": 0,
+                    "BuyInvestment": 0,
+                    "Buy": False,
+                    })
+
 print("Entering Program")
 start = 0;
 end = start + PERIOD;
 
-
+dayCnt = 0
 # In[72]:
-
 profit = 0
 wins = 0
 losses = 0
@@ -173,27 +202,53 @@ while end + 1 < len(df):
     pred = model.predict(targetAtts)[0]
 
     #Do something with percentage here
-    print("--------------")
+    print(dateDf.iloc[end], "------------------------")
     print(pred, " | ", targetLabel)
 
     if pred >= 0:
-        print("Bought in! Profit: ", targetLabel)
-        """
-        targetOpen = dataArray[end + 1][0]
-        targetClose = dataArray[end + 1][3]
-        dayProfit = targetClose - targetOpen
-        """
-        profit += targetLabel
-        if targetLabel > 0:
+        sharePrice = INITIALDF.iloc[end]['Close']
+        sharesToBuy = math.floor((currentMoney/PERIOD)/sharePrice)
+        currentMoney -= sharePrice * sharesToBuy
+        print("\tBuying", sharesToBuy, "Shares")
+        tracker.append({
+                        "Shares": sharesToBuy,
+                        "Profit": targetLabel,
+                        "BuyPrice": sharePrice,
+                        "BuyInvestment": sharePrice * sharesToBuy,
+                        "Buy": True,
+                        })
+    else:
+        tracker.append({
+                        "Shares": 0,
+                        "Profit": 0,
+                        "BuyPrice": 0,
+                        "BuyInvestment": 0,
+                        "Buy": False,
+                        })
+                        
+    if tracker[dayCnt].get("Buy") == True:
+        tradeProfit = tracker[dayCnt].get("Profit") * tracker[dayCnt].get("Shares")
+        profit += tradeProfit
+        currentMoney += tracker[dayCnt].get("BuyInvestment") + tradeProfit
+        print("\nSelling", tracker[dayCnt].get("Shares"), "Shares")
+        print("Bought at:", tracker[dayCnt].get("BuyPrice"), " Sold at:", INITIALDF.iloc[end]["Close"])
+        print("Trade Profit:", tradeProfit, "\n")
+        if tracker[start].get("Profit") > 0:
             print("WIN!")
             wins += 1
         else:
             print("Loss :(")
             losses += 1
-        print("Current Total Profit:" , profit)
-        print("Wins: ", wins, " | Losses:", losses)
-        print("Win Percentage:", wins/ (losses + wins))
+        print("\tCurrent Money", currentMoney)
+        print("\tCurrent Total Profit:" , profit)
+        print("\tWins: ", wins, " | Losses:", losses)
+        print("\tWin Percentage:", wins/ (losses + wins))
+        print("\tReturn:", currentMoney/INITIALINVEST)
+        print("\tDays Elapsed:", dayCnt)
         print("\n")
+    if(dayCnt == 20):
+        sys.exit()
+    dayCnt += 1
     start += 1
     end += 1
 print("Total Profit:", profit)

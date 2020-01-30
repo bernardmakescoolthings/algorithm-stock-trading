@@ -12,4 +12,7 @@ arg1 - path to dataset (.csv)
 arg2 - Period - The amount of previous days to train on to make an estimation for the
                 the target day.
 arg3 - Target Period - The amount of days to sell after.
-
+arg4 - Start Date - Date in format year-month-day   if single digit, add 0. 
+                    Input as 0 to start at earliest possible time
+                    Keep into account this will cut all data to that point. So the 
+                    earliest starting prediction will be StartDate + Period
