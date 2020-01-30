@@ -101,7 +101,7 @@ for i in range(len(df)):
     #difference = df.iloc[i + PERIOD].Close - df.iloc[i].Close
 
     #For one day do difference in open and Close
-    difference = df.iloc[i + TARGET_PERIOD].Close - df.iloc[i+TARGET_PERIOD].Open
+    difference = df.iloc[i].Close - df.iloc[i+TARGET_PERIOD].Close
 
     #Can do binary here or regression
     #if(difference > 0):
@@ -131,14 +131,14 @@ df.columns = dforiginal.columns
 df.head()
 
 
-"""
+
 # Dimensionality Reduction
 PCA_COMPONENTS = 8
 
 pca = PCA(n_components=PCA_COMPONENTS)
 pca.fit(df)
 df = pd.DataFrame(pca.transform(df), columns=['PCA%i' % i for i in range(PCA_COMPONENTS)], index=df.index)
-"""
+
 
 df["Labels"] = labels
 
@@ -176,23 +176,24 @@ while end + 1 < len(df):
     print("--------------")
     print(pred, " | ", targetLabel)
 
-    if pred > 0:
+    if pred >= 0:
         print("Bought in! Profit: ", targetLabel)
-
         """
         targetOpen = dataArray[end + 1][0]
         targetClose = dataArray[end + 1][3]
         dayProfit = targetClose - targetOpen
         """
-
         profit += targetLabel
-        print("Current Total Profit:" , profit)
         if targetLabel > 0:
+            print("WIN!")
             wins += 1
         else:
+            print("Loss :(")
             losses += 1
-        print("Wins: ", wins, " | Losses:", losses, "\n")
-
+        print("Current Total Profit:" , profit)
+        print("Wins: ", wins, " | Losses:", losses)
+        print("Win Percentage:", wins/ (losses + wins))
+        print("\n")
     start += 1
     end += 1
 print("Total Profit:", profit)

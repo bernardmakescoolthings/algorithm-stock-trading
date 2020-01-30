@@ -1,0 +1,31 @@
+'import warnings' failed; traceback:
+Traceback (most recent call last):
+  File "/usr/lib64/python3.6/warnings.py", line 505, in <module>
+    _processoptions(sys.warnoptions)
+  File "/usr/lib64/python3.6/warnings.py", line 186, in _processoptions
+    _setoption(arg)
+  File "/usr/lib64/python3.6/warnings.py", line 192, in _setoption
+    import re
+  File "/usr/lib64/python3.6/re.py", line 123, in <module>
+    import sre_compile
+  File "/usr/lib64/python3.6/sre_compile.py", line 14, in <module>
+    import sre_parse
+  File "/usr/lib64/python3.6/sre_parse.py", line 876, in <module>
+    def parse_template(source, pattern):
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "taLearn.py", line 7, in <module>
+    import numpy as np
+  File "/usr/local/lib64/python3.6/site-packages/numpy/__init__.py", line 145, in <module>
+    from . import lib
+  File "/usr/local/lib64/python3.6/site-packages/numpy/lib/__init__.py", line 27, in <module>
+    from .index_tricks import *
+  File "/usr/local/lib64/python3.6/site-packages/numpy/lib/index_tricks.py", line 13, in <module>
+    import numpy.matrixlib as matrixlib
+  File "/usr/local/lib64/python3.6/site-packages/numpy/matrixlib/__init__.py", line 6, in <module>
+    from .defmatrix import *
+  File "/usr/local/lib64/python3.6/site-packages/numpy/matrixlib/defmatrix.py", line 7, in <module>
+    import ast
+  File "/usr/lib64/python3.6/ast.py", line 27, in <module>
+    from _ast import *
+KeyboardInterrupt
