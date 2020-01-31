@@ -185,7 +185,7 @@ profit = 0
 wins = 0
 losses = 0
 
-while end + 1 < len(df):
+while end + TARGET_PERIOD < len(df):
 
     targetAtts = dataArray[end,:-1]
     targetAtts = targetAtts.reshape(1, -1)
@@ -249,5 +249,29 @@ while end + 1 < len(df):
     dayCnt += 1
     start += 1
     end += 1
+
+while dayCnt < len(tracker):
+
+    if tracker[dayCnt].get("Buy") == True:
+        tradeProfit = tracker[dayCnt].get("Profit") * tracker[dayCnt].get("Shares")
+        profit += tradeProfit
+        currentMoney += tracker[dayCnt].get("BuyInvestment") + tradeProfit
+        print("\nSelling", tracker[dayCnt].get("Shares"), "Shares")
+        print("Bought at:", tracker[dayCnt].get("BuyPrice"), " Sold at:", INITIALDF.iloc[end]["Close"])
+        print("Trade Profit:", tradeProfit, "\n")
+        if tracker[start].get("Profit") > 0:
+            print("WIN!")
+            wins += 1
+        else:
+            print("Loss :(")
+            losses += 1
+        print("\tCurrent Money", currentMoney)
+        print("\tCurrent Total Profit:" , profit)
+        print("\tWins: ", wins, " | Losses:", losses)
+        print("\tWin Percentage:", wins/ (losses + wins))
+        print("\tReturn:", currentMoney/INITIALINVEST)
+        print("\tDays Elapsed:", dayCnt)
+        print("\n")
+    dayCnt += 1
 print("Total Profit:", profit)
 print("Win Percentage:", wins/ (losses + wins))
