@@ -99,6 +99,7 @@ dropList = []
 if START_DATE != '0':
     index = 0
     while df.iloc[index]['Date'] != START_DATE:
+        #print(df.iloc[index]['Date'])
         dropList.append(index)
         index += 1
 df = df.drop(dropList)
@@ -109,7 +110,7 @@ df = populateDataframe(df)
 
 print("Calculating Labels from Target Period")
 for i in range(len(df)):
-    if i + TARGET_PERIOD >= len(df):
+    if i + TARGET_PERIOD >= df.shape[0]:
         break
     ## Compare to between close price and the targets close rpice
     #difference = df.iloc[i + PERIOD].Close - df.iloc[i].Close
@@ -185,7 +186,12 @@ profit = 0
 wins = 0
 losses = 0
 
-while end + TARGET_PERIOD < len(df):
+print(len(df))
+print(df.shape[0])
+print(df.tail())
+
+
+while end + TARGET_PERIOD < df.shape[0]:
 
     targetAtts = dataArray[end,:-1]
     targetAtts = targetAtts.reshape(1, -1)
@@ -249,6 +255,8 @@ while end + TARGET_PERIOD < len(df):
     dayCnt += 1
     start += 1
     end += 1
+
+print("DONE BUYING")
 
 while dayCnt < len(tracker):
 
