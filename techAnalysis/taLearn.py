@@ -185,9 +185,9 @@ profit = 0
 wins = 0
 losses = 0
 
-print(df)
-print(len(df))
-print(df.shape)
+#print(df)
+#print(len(df))
+#print(df.shape)
 
 
 while end + TARGET_PERIOD < df.shape[0]:
@@ -233,6 +233,8 @@ while end + TARGET_PERIOD < df.shape[0]:
 
     if tracker[dayCnt].get("Buy") == True:
         tradeProfit = tracker[dayCnt].get("Profit") * tracker[dayCnt].get("Shares")
+        #print(tracker[dayCnt].get("Profit"), " | ", INITIALDF.iloc[end]["Close"] - tracker[dayCnt].get("BuyPrice"))
+
         profit += tradeProfit
         currentMoney += tracker[dayCnt].get("BuyInvestment") + tradeProfit
         print("\nSelling", tracker[dayCnt].get("Shares"), "Shares")
@@ -261,8 +263,10 @@ print("#########################")
 
 while dayCnt < len(tracker):
 
+    print( dateDf.iloc[end], "------------------------")
     if tracker[dayCnt].get("Buy") == True:
         tradeProfit = tracker[dayCnt].get("Profit") * tracker[dayCnt].get("Shares")
+        #print(tracker[dayCnt].get("Profit"), " | ", INITIALDF.iloc[end]["Close"] - tracker[dayCnt].get("BuyPrice"))
         profit += tradeProfit
         currentMoney += tracker[dayCnt].get("BuyInvestment") + tradeProfit
         print("\nSelling", tracker[dayCnt].get("Shares"), "Shares")
@@ -282,7 +286,10 @@ while dayCnt < len(tracker):
         print("\tDays Elapsed:", dayCnt)
         print("\n")
     dayCnt += 1
+    start+=1
+    end += 1
 
+print("\nSummary:")
 print("\tTotal Money:", currentMoney)
 print("\tCumulative  Profit:" , profit)
 print("\tWins: ", wins, " | Losses:", losses)
