@@ -62,7 +62,7 @@ def populateDataframe(df):
     df['KeltnerChannelLow'] = ta.volatility.keltner_channel_lband(df['High'], df['Low'], df['Close'])
     df['KeltnerChannelLowIndicator'] = ta.volatility.keltner_channel_lband_indicator(df['High'], df['Low'], df['Close'])
     # ## Trend Indicators
-    df['ADX'] = ta.trend.adx(df['High'], df['Low'], df['Close'])
+    #df['ADX'] = ta.trend.adx(df['High'], df['Low'], df['Close'])
     df['ADXNeg'] = ta.trend.adx_neg(df['High'], df['Low'], df['Close'])
     df['ADXPos'] = ta.trend.adx_pos(df['High'], df['Low'], df['Close'])
     df['AroonIndicator'] = ta.trend.aroon_down(df['Close'])
@@ -94,17 +94,19 @@ def populateDataframe(df):
 print("Loading Dataframe")
 
 df = pd.read_csv(CSV)
+
 #Trim dates
 dropList = []
 if START_DATE != '0':
     index = 0
     while df.iloc[index]['Date'] != START_DATE:
-        #print(df.iloc[index]['Date'])
+        #print(index, "| ", df.iloc[index]['Date'])
         dropList.append(index)
         index += 1
-df = df.drop(dropList)
+df = df.drop(dropList).reset_index()
 INITIALDF = copy.copy(df)
 
+#print(len(df.index))
 print("Populating Dataframe")
 df = populateDataframe(df)
 
@@ -147,8 +149,6 @@ df = pd.DataFrame(xScaled)
 df.columns = dforiginal.columns
 df.head()
 
-
-
 # Dimensionality Reduction
 PCA_COMPONENTS = 8
 
@@ -178,7 +178,7 @@ for i in range(TARGET_PERIOD):
 
 print("Entering Program")
 start = 0;
-end = start + PERIOD;
+end = start + TARGET_PERIOD;
 
 dayCnt = 0
 # In[72]:
@@ -186,9 +186,9 @@ profit = 0
 wins = 0
 losses = 0
 
+print(df)
 print(len(df))
-print(df.shape[0])
-print(df.tail())
+print(df.shape)
 
 
 while end + TARGET_PERIOD < df.shape[0]:
@@ -246,7 +246,7 @@ while end + TARGET_PERIOD < df.shape[0]:
             print("Loss :(")
             losses += 1
         print("\tCurrent Money", currentMoney)
-        print("\tCurrent Total Profit:" , profit)
+        print("\tCurrent Cumulative Profit:" , profit)
         print("\tWins: ", wins, " | Losses:", losses)
         print("\tWin Percentage:", wins/ (losses + wins))
         print("\tReturn:", currentMoney/INITIALINVEST)
@@ -256,7 +256,9 @@ while end + TARGET_PERIOD < df.shape[0]:
     start += 1
     end += 1
 
+print("#########################")
 print("DONE BUYING")
+print("#########################")
 
 while dayCnt < len(tracker):
 
@@ -273,13 +275,18 @@ while dayCnt < len(tracker):
         else:
             print("Loss :(")
             losses += 1
-        print("\tCurrent Money", currentMoney)
-        print("\tCurrent Total Profit:" , profit)
+        print("\tCurrent Money:", currentMoney)
+        print("\tCurrent Cumulative Profit:" , profit)
         print("\tWins: ", wins, " | Losses:", losses)
         print("\tWin Percentage:", wins/ (losses + wins))
         print("\tReturn:", currentMoney/INITIALINVEST)
         print("\tDays Elapsed:", dayCnt)
         print("\n")
     dayCnt += 1
-print("Total Profit:", profit)
-print("Win Percentage:", wins/ (losses + wins))
+
+print("\tTotal Money:", currentMoney)
+print("\tCumulative  Profit:" , profit)
+print("\tWins: ", wins, " | Losses:", losses)
+print("\tWin Percentage:", wins/ (losses + wins))
+print("\tReturn:", currentMoney/INITIALINVEST)
+print("\tDays Elapsed:", dayCnt)
