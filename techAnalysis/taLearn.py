@@ -126,8 +126,7 @@ for i in range(len(df)):
 
     #print(difference)
 
-# In[67]:
-df.to_csv("TmpDataframe.csv", sep='\t')
+#df.to_csv("TmpDataframe.csv", sep='\t')
 
 dateDf = df['Date']
 
