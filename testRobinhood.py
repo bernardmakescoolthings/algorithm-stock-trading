@@ -15,15 +15,17 @@ pwd = contents.split()[1]
 fileName.close
 
 print(user)
-print(pwd)
+#print(pwd)
 
 #Log into Robinhood
 trader = Robinhood()
 login = trader.login(username=user, password=pwd)
 if login == True:
     string = "Login Successful\n"
-    printStr(string, printOutput, f)
+    print(string)
+    #printStr(string, printOutput, f)
 else:
     string = "Login Failed, Exiting"
-    printStr(string, printOutput, f)
+    print(string)
+    #printStr(string, printOutput, f)
     sys.exit()
