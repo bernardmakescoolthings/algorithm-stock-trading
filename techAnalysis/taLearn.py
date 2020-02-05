@@ -177,7 +177,7 @@ for i in range(TARGET_PERIOD):
 
 print("Entering Program")
 start = 0;
-end = start + TARGET_PERIOD;
+end = start + PERIOD;
 
 dayCnt = 0
 # In[72]:
@@ -185,22 +185,25 @@ profit = 0
 wins = 0
 losses = 0
 
-#print(df)
+print(df)
 #print(len(df))
-#print(df.shape)
-
+print(df.shape)
+print(start)
+print(end)
 
 while end + TARGET_PERIOD < df.shape[0]:
 
     targetAtts = dataArray[end,:-1]
     targetAtts = targetAtts.reshape(1, -1)
-
     targetLabel = dataArray[end,-1]
+
     xTrain = dataArray[start:end - 1,:-1]
     yTrain = dataArray[start:end -1,-1]
 
     #print(targetAtts.shape)
+    #print(targetLabel.shape)
     #print(xTrain.shape)
+    #sprint(yTrain.shape)
 
     model = MLPRegressor(solver = 'adam', activation = 'relu', hidden_layer_sizes = [128, 128, 128, 128])
     model.fit(xTrain, yTrain)

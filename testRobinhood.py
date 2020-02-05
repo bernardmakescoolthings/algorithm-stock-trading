@@ -22,8 +22,8 @@ trader = Robinhood()
 login = trader.login(username=user, password=pwd)
 if login == True:
     string = "Login Successful\n"
-    printStr(string, printOutput, f)
+    print(string)
 else:
     string = "Login Failed, Exiting"
-    printStr(string, printOutput, f)
+    print(string)
     sys.exit()
