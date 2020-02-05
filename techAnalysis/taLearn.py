@@ -149,13 +149,14 @@ df = pd.DataFrame(xScaled)
 df.columns = dforiginal.columns
 df.head()
 
+"""
 # Dimensionality Reduction
 PCA_COMPONENTS = 8
 
 pca = PCA(n_components=PCA_COMPONENTS)
 pca.fit(df)
 df = pd.DataFrame(pca.transform(df), columns=['PCA%i' % i for i in range(PCA_COMPONENTS)], index=df.index)
-
+"""
 
 df["Labels"] = labels
 
@@ -192,6 +193,11 @@ print(df.shape)
 print(start)
 print(end)
 
+TruePos = 0
+TrueNeg = 0
+FalsePos = 0
+FalseNeg = 0
+
 while end + 1 + TARGET_PERIOD < df.shape[0]:
 
     targetAtts = dataArray[end,:-1]
@@ -213,8 +219,21 @@ while end + 1 + TARGET_PERIOD < df.shape[0]:
     #Do something with percentage here
     print(dateDf.iloc[end], "------------------------")
     print(pred, " | ", targetLabel)
+    if pred > 0 and targetLabel > 0:
+        TruePos += 1
+    elif pred > 0 and targetLabel <0:
+        TrueNeg += 1
+    elif pred < 0 and targetLabel > 0:
+        FalsePos += 1
+    elif pred < 0 and targetLabel < 0:
+        FalseNeg += 1
 
-    if pred >= 0:
+    print("TruePos: ", TruePos)
+    print("TrueNeg: ", TrueNeg)
+    print("FalsePos: ", FalsePos)
+    print("FalseNeg: ", FalseNeg)
+
+    if pred >= .05:
         sharePrice = INITIALDF.iloc[end+1]['Open']
         sharesToBuy = math.floor((currentMoney/PERIOD)/sharePrice)
         currentMoney -= sharePrice * sharesToBuy
