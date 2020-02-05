@@ -118,7 +118,8 @@ for i in range(len(df)):
     #difference = df.iloc[i + PERIOD].Close - df.iloc[i].Close
 
     #For one day do difference in open and Close
-    difference = df.iloc[i+TARGET_PERIOD].Close - df.iloc[i].Close
+    #difference = df.iloc[i+TARGET_PERIOD].Close - df.iloc[i].Close
+    difference = df.iloc[i+TARGET_PERIOD].Close - df.iloc[i+1].Open
 
     #Can do binary here or regression
     #if(difference > 0):
@@ -191,7 +192,7 @@ print(df.shape)
 print(start)
 print(end)
 
-while end + TARGET_PERIOD < df.shape[0]:
+while end + 1 + TARGET_PERIOD < df.shape[0]:
 
     targetAtts = dataArray[end,:-1]
     targetAtts = targetAtts.reshape(1, -1)
@@ -214,7 +215,7 @@ while end + TARGET_PERIOD < df.shape[0]:
     print(pred, " | ", targetLabel)
 
     if pred >= 0:
-        sharePrice = INITIALDF.iloc[end]['Close']
+        sharePrice = INITIALDF.iloc[end+1]['Open']
         sharesToBuy = math.floor((currentMoney/PERIOD)/sharePrice)
         currentMoney -= sharePrice * sharesToBuy
         print("\tBuying", sharesToBuy, "Shares at", sharePrice)
