@@ -8,7 +8,7 @@ for the target period and then selling at the close of that day.
 
 taLearn.py
 
-arg1 - path to dataset (.csv)
+arg1 - Stock Ticker
 arg2 - Period - The amount of previous days to train on to make an estimation for the
                 the target day.
 arg3 - Target Period - The amount of days to sell after.

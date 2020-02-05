@@ -134,7 +134,6 @@ df = populateDataframe(df)
 df = df.reset_index()
 
 df.to_csv("TmpDataframe.csv", sep='\t')
-df['Label'] = np.nan
 for i in range(len(df)):
     if i + TARGET_PERIOD >= df.shape[0]:
         break
@@ -149,8 +148,10 @@ for i in range(len(df)):
     df.loc[i, 'Label'] = difference
 
     #print(difference)
+
 dateDf = df['Date']
-df = df.drop(['Date'], axis=1)
+#df = df.drop(['Date'], axis=1)
+df = df.drop(['Date', 'High', 'Low', 'Open', 'Close', 'Volume', 'Adj Close'], axis=1)
 df = df.fillna(0)
 
 

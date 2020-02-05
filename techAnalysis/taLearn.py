@@ -1,5 +1,6 @@
 import numpy as np
 import pandas as pd
+from pandas_datareader import data as pdr
 import ta
 import sys
 import math
@@ -13,12 +14,13 @@ from sklearn.decomposition import PCA
 import warnings
 warnings.filterwarnings("ignore")
 
+import yfinance as yf
 
 if len(sys.argv) != 5:
     print("Error with command line arguments")
     sys.exit()
 else:
-    CSV = sys.argv[1]
+    STOCK = sys.argv[1]
     PERIOD = int(sys.argv[2])
     TARGET_PERIOD = int(sys.argv[3])
     START_DATE = sys.argv[4]
@@ -93,8 +95,9 @@ def populateDataframe(df):
 
 print("Loading Dataframe")
 
-df = pd.read_csv(CSV)
-
+df = pdr.get_data_yahoo(STOCK, start=START_DATE)
+#df = pd.read_csv(CSV)
+"""
 #Trim dates
 dropList = []
 if START_DATE != '0':
@@ -104,12 +107,12 @@ if START_DATE != '0':
         dropList.append(index)
         index += 1
 df = df.drop(dropList).reset_index()
+"""
 INITIALDF = copy.copy(df)
-
 #print(len(df.index))
 print("Populating Dataframe")
 df = populateDataframe(df)
-
+df = df.reset_index()
 print("Calculating Labels from Target Period")
 for i in range(len(df)):
     if i + TARGET_PERIOD >= df.shape[0]:
@@ -254,7 +257,7 @@ while end + 1 + TARGET_PERIOD < df.shape[0]:
 
     if pred >= .05:
         sharePrice = INITIALDF.iloc[end+1]['Open']
-        sharesToBuy = math.floor((currentMoney/PERIOD)/sharePrice)
+        sharesToBuy = math.floor((currentMoney/10)/sharePrice)
         currentMoney -= sharePrice * sharesToBuy
         print("\tBuying", sharesToBuy, "Shares at", sharePrice)
         tracker.append({
