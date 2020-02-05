@@ -23,15 +23,7 @@ login = trader.login(username=user, password=pwd)
 if login == True:
     string = "Login Successful\n"
     print(string)
-<<<<<<< HEAD
 else:
     string = "Login Failed, Exiting"
     print(string)
-=======
-    #printStr(string, printOutput, f)
-else:
-    string = "Login Failed, Exiting"
-    print(string)
-    #printStr(string, printOutput, f)
->>>>>>> 94ff26b30da565f1c9ce94b7aa81790c4907d822
     sys.exit()

@@ -12,17 +12,20 @@ from datetime import datetime, timedelta
 import yfinance as yf
 import ta
 import numpy as np
-import quandl as qdl
 
 import pandas as pd
 from pandas_datareader import data as pdr
+from sklearn import preprocessing
+from sklearn.neural_network import MLPRegressor
+from sklearn.decomposition import PCA
+
 
 #Supress Warnings
 #import warnings
 #warnings.filterwarnings("ignore")
-
-TARGET_PERIOD=10
-PERIOD = 20
+STOCK = "GE"
+TARGET_PERIOD=1
+PERIOD = 100
 
 def populateDataframe(df):
 
@@ -93,8 +96,8 @@ def populateDataframe(df):
     return df;
 
 
-"""
-fileName = open("../cred", "r")
+
+fileName = open("/home/bsuwirjo/cred", "r")
 contents = fileName.read()
 user = contents.split()[0]
 pwd = contents.split()[1]
@@ -114,7 +117,7 @@ else:
     print(string)
     sys.exit()
 
-"""
+
 
 dateObj = datetime.now() - timedelta(days=1)
 dateStartObj = datetime.now() - timedelta(days=PERIOD)
@@ -122,14 +125,13 @@ dateStartObj = datetime.now() - timedelta(days=PERIOD)
 dateEnd = str(dateObj.year) + "-" + str(dateObj.month) + "-"+ str(dateObj.day)
 dateStart = str(dateStartObj.year) + "-" + str(dateStartObj.month) + "-"+ str(dateStartObj.day)
 
-df = pdr.get_data_yahoo('AAPL', start=dateStart, end=dateEnd)
-
+df = pdr.get_data_yahoo(STOCK, start=dateStart, end=dateEnd)
+#print(df.head())
 #print(df)
 
 print("Populating Dataframe")
 df = populateDataframe(df)
 df = df.reset_index()
-print(df)
 
 df.to_csv("TmpDataframe.csv", sep='\t')
 df['Label'] = np.nan
@@ -141,10 +143,74 @@ for i in range(len(df)):
 
     #For one day do difference in open and Close
     difference = df.iloc[i+TARGET_PERIOD].Close - df.iloc[i].Close
-    print(difference)
+    #print(difference)
     #Can do binary here or regression
     #if(difference > 0):
     df.loc[i, 'Label'] = difference
 
     #print(difference)
+dateDf = df['Date']
+df = df.drop(['Date'], axis=1)
+df = df.fillna(0)
+
+
+
+labels = df["Label"]
+"""
+High = df["High"]
+Low = df["Low"]
+Open = df["Open"]
+Close = df["Close"]
+Volume = df["Volume"]
+AdjClose = df["Adj Close"]
+"""
+
+#Normalize the Data
+dforiginal = df
+x = df.values
+scaler = preprocessing.MinMaxScaler()
+xScaled = scaler.fit_transform(x)
+df = pd.DataFrame(xScaled)
+df.columns = dforiginal.columns
+
+"""
+# Dimensionality Reduction
+PCA_COMPONENTS = 8
+
+pca = PCA(n_components=PCA_COMPONENTS)
+pca.fit(df)
+df = pd.DataFrame(pca.transform(df), columns=['PCA%i' % i for i in range(PCA_COMPONENTS)], index=df.index)
+"""
+
+#df.drop(df.tail(TARGET_PERIOD).index,inplace=True)
+
+df["Label"] = labels
 print(df)
+
+
+
+dataArray = df.to_numpy()
+#targetAtts = targetAtts.to_numpy()
+
+
+targetAtts = dataArray[dataArray.shape[0]-TARGET_PERIOD,:-1]
+targetAtts = targetAtts.reshape(1, -1)
+xTrain = dataArray[:dataArray.shape[0]-TARGET_PERIOD,:-1]
+yTrain = dataArray[:dataArray.shape[0]-TARGET_PERIOD,-1]
+
+#print(targetAtts.shape)
+#print(targetLabel.shape)
+#print(xTrain.shape)
+#sprint(yTrain.shape)
+
+#print(targetAtts)
+#print(xTrain[len(xTrain)-1])
+
+model = MLPRegressor(solver = 'adam', activation = 'relu', hidden_layer_sizes = [128, 128, 128, 128])
+model.fit(xTrain, yTrain)
+pred = model.predict(targetAtts)[0]
+print(pred)
+
+quote_info = trader.quote_data(STOCK)
+print(quote_info)
+stock_instrument = trader.instruments(STOCK)[0]

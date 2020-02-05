@@ -139,6 +139,13 @@ df.head()
 # ## Clean Data
 
 labels = df["Label"]
+High = df["High"]
+Low = df["Low"]
+Open = df["Open"]
+Close = df["Close"]
+Volume = df["Volume"]
+AdjClose = df["Adj Close"]
+
 
 #Normalize the Data
 dforiginal = df
@@ -159,6 +166,15 @@ df = pd.DataFrame(pca.transform(df), columns=['PCA%i' % i for i in range(PCA_COM
 """
 
 df["Labels"] = labels
+
+"""
+df["High"] = High
+df["Low"] = Low
+df["Open"] = Open
+df["Close"] = Close
+df["Volume"] = Volume
+df["Adj Close"] = AdjClose
+"""
 
 dataArray = df.to_numpy()
 
