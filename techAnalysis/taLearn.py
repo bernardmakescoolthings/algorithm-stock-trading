@@ -257,7 +257,7 @@ while end + 1 + TARGET_PERIOD < df.shape[0]:
 
     if pred >= .05:
         sharePrice = INITIALDF.iloc[end+1]['Open']
-        sharesToBuy = math.floor((currentMoney/10)/sharePrice)
+        sharesToBuy = math.floor((currentMoney/3)/sharePrice)
         currentMoney -= sharePrice * sharesToBuy
         print("\tBuying", sharesToBuy, "Shares at", sharePrice)
         tracker.append({
