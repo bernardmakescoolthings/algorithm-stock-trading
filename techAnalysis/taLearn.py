@@ -131,21 +131,24 @@ for i in range(len(df)):
 
 dateDf = df['Date']
 
-df = df.drop(['Date'], axis=1)
+#df = df.drop(['Date'], axis=1)
 df = df.fillna(0)
 df.head()
-
+#print(df.columns)
+df = df.drop(['Date', 'High', 'Low', 'Open', 'Close', 'Volume', 'Adj Close'], axis=1)
 
 # ## Clean Data
 
 labels = df["Label"]
+
+"""
 High = df["High"]
 Low = df["Low"]
 Open = df["Open"]
 Close = df["Close"]
 Volume = df["Volume"]
 AdjClose = df["Adj Close"]
-
+"""
 
 #Normalize the Data
 dforiginal = df
@@ -154,7 +157,7 @@ scaler = preprocessing.MinMaxScaler()
 xScaled = scaler.fit_transform(x)
 df = pd.DataFrame(xScaled)
 df.columns = dforiginal.columns
-df.head()
+#df.head()
 
 """
 # Dimensionality Reduction
@@ -203,11 +206,11 @@ profit = 0
 wins = 0
 losses = 0
 
-print(df)
+#print(df)
 #print(len(df))
-print(df.shape)
-print(start)
-print(end)
+#print(df.shape)
+#print(start)
+#print(end)
 
 TruePos = 0
 TrueNeg = 0
