@@ -140,7 +140,7 @@ print("Populating Dataframe")
 df = populateDataframe(df)
 df = df.reset_index()
 
-df.to_csv("TmpDataframe.csv", sep='\t')
+#df.to_csv("TmpDataframe.csv", sep='\t')
 for i in range(len(df)):
     if i + TARGET_PERIOD >= df.shape[0]:
         break
