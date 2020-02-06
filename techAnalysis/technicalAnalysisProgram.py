@@ -20,6 +20,12 @@ from sklearn.neural_network import MLPRegressor
 from sklearn.decomposition import PCA
 
 
+if len(sys.argv) != 2:
+    print("Error with command line arguments")
+    sys.exit()
+else:
+    STOCK = sys.argv[1]
+
 #Supress Warnings
 #import warnings
 #warnings.filterwarnings("ignore")
@@ -96,7 +102,7 @@ def populateDataframe(df):
     return df;
 
 
-
+"""
 fileName = open("/home/bsuwirjo/cred", "r")
 contents = fileName.read()
 user = contents.split()[0]
@@ -116,7 +122,7 @@ else:
     string = "Login Failed, Exiting"
     print(string)
     sys.exit()
-
+"""
 
 
 dateObj = datetime.now() - timedelta(days=1)
@@ -186,7 +192,7 @@ df = pd.DataFrame(pca.transform(df), columns=['PCA%i' % i for i in range(PCA_COM
 #df.drop(df.tail(TARGET_PERIOD).index,inplace=True)
 
 df["Label"] = labels
-print(df)
+print(dateDf[len(dateDf)-1])
 
 
 
@@ -212,6 +218,6 @@ model.fit(xTrain, yTrain)
 pred = model.predict(targetAtts)[0]
 print(pred)
 
-quote_info = trader.quote_data(STOCK)
-print(quote_info)
-stock_instrument = trader.instruments(STOCK)[0]
+#quote_info = trader.quote_data(STOCK)
+#print(quote_info)
+#stock_instrument = trader.instruments(STOCK)[0]

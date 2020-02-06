@@ -185,7 +185,7 @@ df["Adj Close"] = AdjClose
 dataArray = df.to_numpy()
 
 
-INITIALINVEST = 30000
+INITIALINVEST = 100
 
 currentMoney = INITIALINVEST
 
@@ -255,9 +255,9 @@ while end + 1 + TARGET_PERIOD < df.shape[0]:
     print("FalsePos: ", FalsePos)
     print("FalseNeg: ", FalseNeg)
 
-    if pred >= .05:
+    if pred >= 0:
         sharePrice = INITIALDF.iloc[end+1]['Open']
-        sharesToBuy = math.floor((currentMoney/10)/sharePrice)
+        sharesToBuy = math.floor((currentMoney/2)/sharePrice)
         currentMoney -= sharePrice * sharesToBuy
         print("\tBuying", sharesToBuy, "Shares at", sharePrice)
         tracker.append({
