@@ -208,8 +208,8 @@ for stock in stockFile:
         #print(xTrain.shape)
         #sprint(yTrain.shape)
 
-        print(targetAtts)
-        print(xTrain[len(xTrain)-1])
+        #print(targetAtts)
+        #print(xTrain[len(xTrain)-1])
 
         model = MLPRegressor(solver = 'adam', activation = 'relu', hidden_layer_sizes = [128, 128, 128, 128])
         model.fit(xTrain, yTrain)
