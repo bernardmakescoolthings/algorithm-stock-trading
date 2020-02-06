@@ -255,7 +255,7 @@ while end + 1 + TARGET_PERIOD < df.shape[0]:
     #print(xTrain.shape)
     #sprint(yTrain.shape)
 
-    model = MLPRegressor(solver = 'adam', activation = 'relu', hidden_layer_sizes = [128, 128, 128, 128])
+    model = MLPRegressor(solver = 'adam', activation = 'relu', hidden_layer_sizes = [128,128,128, 128], max_iter=1000)
     model.fit(xTrain, yTrain)
     pred = model.predict(targetAtts)[0]
 

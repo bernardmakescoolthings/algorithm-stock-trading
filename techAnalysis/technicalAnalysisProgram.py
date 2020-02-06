@@ -28,8 +28,8 @@ else:
     PERIOD = int(sys.argv[2])
 
 #Supress Warnings
-import warnings
-warnings.filterwarnings("ignore")
+#import warnings
+#warnings.filterwarnings("ignore")
 
 TARGET_PERIOD=1
 #PERIOD = 100
@@ -215,7 +215,7 @@ yTrain = dataArray[:dataArray.shape[0]-TARGET_PERIOD,-1]
 #print(targetAtts)
 #print(xTrain[len(xTrain)-1])
 
-model = MLPRegressor(solver = 'adam', activation = 'relu', hidden_layer_sizes = [128, 128, 128, 128])
+model = MLPRegressor(solver = 'adam', activation = 'relu', hidden_layer_sizes = [128,128,128, 128], max_iter=1000)
 model.fit(xTrain, yTrain)
 pred = model.predict(targetAtts)[0]
 print(pred)
