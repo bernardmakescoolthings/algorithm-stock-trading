@@ -323,10 +323,6 @@ while end + 1 + TARGET_PERIOD < df.shape[0]:
     start += 1
     end += 1
 
-print("#########################")
-print("DONE BUYING")
-print("#########################")
-
 while dayCnt < len(tracker):
 
     print( dateDf.iloc[end], "------------------------")

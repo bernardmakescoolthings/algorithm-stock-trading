@@ -135,6 +135,7 @@ dateStart = str(dateStartObj.year) + "-" + str(dateStartObj.month) + "-"+ str(da
 df = pdr.get_data_yahoo(STOCK, start=dateStart, end=dateEnd)
 #print(df.head())
 #print(df)
+print(df.tail())
 
 print("Populating Dataframe")
 df = populateDataframe(df)
