@@ -6,6 +6,9 @@ import sys
 import math
 import copy
 
+import datetime
+from datetime import datetime, timedelta
+
 from sklearn import preprocessing
 from sklearn.neural_network import MLPRegressor
 from sklearn.decomposition import PCA
@@ -16,14 +19,26 @@ warnings.filterwarnings("ignore")
 
 import yfinance as yf
 
-if len(sys.argv) != 5:
+if len(sys.argv) != 4:
     print("Error with command line arguments")
     sys.exit()
 else:
     STOCK = sys.argv[1]
     PERIOD = int(sys.argv[2])
-    TARGET_PERIOD = int(sys.argv[3])
-    START_DATE = sys.argv[4]
+    START_DATE = sys.argv[3]
+
+TARGET_PERIOD = 1
+
+def sub_business_days(from_date, sub_days):
+    business_days_to_sub = sub_days
+    current_date = from_date
+    while business_days_to_sub > 0:
+        current_date -= timedelta(days=1)
+        weekday = current_date.weekday()
+        if weekday >= 5: # sunday = 6
+            continue
+        business_days_to_sub -= 1
+    return current_date
 
 def populateDataframe(df):
 
@@ -95,7 +110,13 @@ def populateDataframe(df):
 
 print("Loading Dataframe")
 
-df = pdr.get_data_yahoo(STOCK, start=START_DATE)
+dateArr = START_DATE.split("-")
+
+startDate = datetime(int(dateArr[0]), int(dateArr[1]), int(dateArr[2]))
+startDate = sub_business_days(startDate, PERIOD)
+
+df = pdr.get_data_yahoo(STOCK, start=startDate)
+
 #df = pd.read_csv(CSV)
 """
 #Trim dates

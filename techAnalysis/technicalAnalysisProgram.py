@@ -20,18 +20,19 @@ from sklearn.neural_network import MLPRegressor
 from sklearn.decomposition import PCA
 
 
-if len(sys.argv) != 2:
+if len(sys.argv) != 3:
     print("Error with command line arguments")
     sys.exit()
 else:
     STOCK = sys.argv[1]
+    PERIOD = int(sys.argv[2])
 
 #Supress Warnings
-#import warnings
-#warnings.filterwarnings("ignore")
-STOCK = "GE"
+import warnings
+warnings.filterwarnings("ignore")
+
 TARGET_PERIOD=1
-PERIOD = 100
+#PERIOD = 100
 
 def populateDataframe(df):
 
