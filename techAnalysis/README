@@ -1,18 +1,17 @@
-The program will takes a csv from Yahoo finance (Download full History if Possible). 
+singleBackTest.py - Backtests on a single stocks
+Arg1 - Stock Ticker
+Arg2 - Period, amount of days to train on for a prediction. Usually 100-200
+Arg3 - Date to Start (YEAR-MONTH-DAY)
 
-The program will loop through the whole csv in chronological order buying and selling
-if it has decided the technical analysis indicators are in its favor. 
+singlePrediction.py - Makes a prediction for a single stock for a given day.
+                   Whatever date is displayed, predicts for the next day.
+Arg1 - Stock Ticker
+Arg2 - Period, amount of days to train on for a prediction. Usually 100-200
 
-The program is not day trading. The program will simulate buying a stock, holding it
-for the target period and then selling at the close of that day.
+multiBackTest.py - Pulls from stocks.txt and then runs a backtesting program on
+                   all the stocks outputting to output/backtest
 
-taLearn.py
+Arg1 - Date to Start (YEAR-MONTH-DAY)
 
-arg1 - Stock Ticker
-arg2 - Period - The amount of previous days to train on to make an estimation for the
-                the target day.
-arg3 - Target Period - The amount of days to sell after.
-arg4 - Start Date - Date in format year-month-day   if single digit, add 0. 
-                    Input as 0 to start at earliest possible time
-                    Keep into account this will cut all data to that point. So the 
-                    earliest starting prediction will be StartDate + Period
+multiPrediction.py - Creates a prediction for every stock in stocks.txt
+                     All predictions are outputted to output/predictions.
