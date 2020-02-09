@@ -32,7 +32,8 @@ TARGET_PERIOD = 1
 def sub_business_days(from_date, sub_days):
     business_days_to_sub = sub_days
     current_date = from_date
-    while business_days_to_sub > 0:
+    while business_days_to_sub > 0:df = pdr.get_data_yahoo(STOCK, start=startDate)
+
         current_date -= timedelta(days=1)
         weekday = current_date.weekday()
         if weekday >= 5: # sunday = 6
