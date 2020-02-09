@@ -1,0 +1,793 @@
+Loading Dataframe
+Populating Dataframe
+Calculating Labels from Target Period
+Entering Program
+2019-11-07 00:00:00 ------------------------
+0.3291922359271213  |  0.410003662109375
+TruePos:  1
+TrueNeg:  0
+FalsePos:  0
+FalseNeg:  0
+	Buying 1 Shares at 48.41999816894531
+2019-11-08 00:00:00 ------------------------
+-0.027884482537446936  |  0.09000015258789062
+TruePos:  1
+TrueNeg:  0
+FalsePos:  1
+FalseNeg:  0
+
+Selling 1 Shares
+Bought at: 48.41999816894531  Sold at: 48.83000183105469
+Trade Profit: 0.410003662109375 
+
+WIN!
+	Current Money 100.41000366210938
+	Current Cumulative Profit: 0.410003662109375
+	Wins:  1  | Losses: 0
+	Win Percentage: 1.0
+	Return: 1.0041000366210937
+	Days Elapsed: 1
+
+
+2019-11-11 00:00:00 ------------------------
+0.11104559616477142  |  0.07999801635742188
+TruePos:  2
+TrueNeg:  0
+FalsePos:  1
+FalseNeg:  0
+	Buying 1 Shares at 48.290000915527344
+2019-11-12 00:00:00 ------------------------
+0.20987854991070215  |  0.21999740600585938
+TruePos:  3
+TrueNeg:  0
+FalsePos:  1
+FalseNeg:  0
+	Buying 0 Shares at 48.2400016784668
+
+Selling 1 Shares
+Bought at: 48.290000915527344  Sold at: 48.369998931884766
+Trade Profit: 0.07999801635742188 
+
+WIN!
+	Current Money 100.4900016784668
+	Current Cumulative Profit: 0.4900016784667969
+	Wins:  2  | Losses: 0
+	Win Percentage: 1.0
+	Return: 1.004900016784668
+	Days Elapsed: 3
+
+
+2019-11-13 00:00:00 ------------------------
+-0.6095968218997047  |  -0.6500015258789062
+TruePos:  3
+TrueNeg:  0
+FalsePos:  1
+FalseNeg:  1
+
+Selling 0 Shares
+Bought at: 48.2400016784668  Sold at: 48.459999084472656
+Trade Profit: 0.0 
+
+WIN!
+	Current Money 100.4900016784668
+	Current Cumulative Profit: 0.4900016784667969
+	Wins:  3  | Losses: 0
+	Win Percentage: 1.0
+	Return: 1.004900016784668
+	Days Elapsed: 4
+
+
+2019-11-14 00:00:00 ------------------------
+0.4809759242364463  |  0.020000457763671875
+TruePos:  4
+TrueNeg:  0
+FalsePos:  1
+FalseNeg:  1
+	Buying 1 Shares at 45.06999969482422
+2019-11-15 00:00:00 ------------------------
+0.2685687745571571  |  0.17000198364257812
+TruePos:  5
+TrueNeg:  0
+FalsePos:  1
+FalseNeg:  1
+	Buying 0 Shares at 44.97999954223633
+
+Selling 1 Shares
+Bought at: 45.06999969482422  Sold at: 45.09000015258789
+Trade Profit: 0.020000457763671875 
+
+WIN!
+	Current Money 100.51000213623047
+	Current Cumulative Profit: 0.5100021362304688
+	Wins:  4  | Losses: 0
+	Win Percentage: 1.0
+	Return: 1.0051000213623047
+	Days Elapsed: 6
+
+
+2019-11-18 00:00:00 ------------------------
+0.18061769180526432  |  0.0800018310546875
+TruePos:  6
+TrueNeg:  0
+FalsePos:  1
+FalseNeg:  1
+	Buying 1 Shares at 45.38999938964844
+
+Selling 0 Shares
+Bought at: 44.97999954223633  Sold at: 45.150001525878906
+Trade Profit: 0.0 
+
+WIN!
+	Current Money 55.12000274658203
+	Current Cumulative Profit: 0.5100021362304688
+	Wins:  5  | Losses: 0
+	Win Percentage: 1.0
+	Return: 0.5512000274658203
+	Days Elapsed: 7
+
+
+2019-11-19 00:00:00 ------------------------
+-0.5811891698385218  |  -0.6099967956542969
+TruePos:  6
+TrueNeg:  0
+FalsePos:  1
+FalseNeg:  2
+
+Selling 1 Shares
+Bought at: 45.38999938964844  Sold at: 45.470001220703125
+Trade Profit: 0.0800018310546875 
+
+WIN!
+	Current Money 100.59000396728516
+	Current Cumulative Profit: 0.5900039672851562
+	Wins:  6  | Losses: 0
+	Win Percentage: 1.0
+	Return: 1.0059000396728515
+	Days Elapsed: 8
+
+
+2019-11-20 00:00:00 ------------------------
+-0.19884477823772842  |  -0.29000091552734375
+TruePos:  6
+TrueNeg:  0
+FalsePos:  1
+FalseNeg:  3
+2019-11-21 00:00:00 ------------------------
+-0.3613964650319356  |  -0.3000030517578125
+TruePos:  6
+TrueNeg:  0
+FalsePos:  1
+FalseNeg:  4
+2019-11-22 00:00:00 ------------------------
+0.12711947765947942  |  0.4500007629394531
+TruePos:  7
+TrueNeg:  0
+FalsePos:  1
+FalseNeg:  4
+	Buying 1 Shares at 45.0
+2019-11-25 00:00:00 ------------------------
+-0.3745739753771633  |  -0.21999740600585938
+TruePos:  7
+TrueNeg:  0
+FalsePos:  1
+FalseNeg:  5
+
+Selling 1 Shares
+Bought at: 45.0  Sold at: 45.45000076293945
+Trade Profit: 0.4500007629394531 
+
+WIN!
+	Current Money 101.04000473022461
+	Current Cumulative Profit: 1.0400047302246094
+	Wins:  7  | Losses: 0
+	Win Percentage: 1.0
+	Return: 1.010400047302246
+	Days Elapsed: 12
+
+
+2019-11-26 00:00:00 ------------------------
+-0.08230774412457725  |  -0.11999893188476562
+TruePos:  7
+TrueNeg:  0
+FalsePos:  1
+FalseNeg:  6
+2019-11-27 00:00:00 ------------------------
+-0.016761582583854517  |  0.06999969482421875
+TruePos:  7
+TrueNeg:  0
+FalsePos:  2
+FalseNeg:  6
+2019-11-29 00:00:00 ------------------------
+-0.5495758639089552  |  -0.5499992370605469
+TruePos:  7
+TrueNeg:  0
+FalsePos:  2
+FalseNeg:  7
+2019-12-02 00:00:00 ------------------------
+-0.25426954977980254  |  -0.12000274658203125
+TruePos:  7
+TrueNeg:  0
+FalsePos:  2
+FalseNeg:  8
+2019-12-03 00:00:00 ------------------------
+-0.4781930257923221  |  -0.6300010681152344
+TruePos:  7
+TrueNeg:  0
+FalsePos:  2
+FalseNeg:  9
+2019-12-04 00:00:00 ------------------------
+-0.3150653832270886  |  -0.529998779296875
+TruePos:  7
+TrueNeg:  0
+FalsePos:  2
+FalseNeg:  10
+2019-12-05 00:00:00 ------------------------
+-0.10833972651886925  |  -0.049999237060546875
+TruePos:  7
+TrueNeg:  0
+FalsePos:  2
+FalseNeg:  11
+2019-12-06 00:00:00 ------------------------
+0.0007058924817489043  |  0.01000213623046875
+TruePos:  8
+TrueNeg:  0
+FalsePos:  2
+FalseNeg:  11
+	Buying 1 Shares at 43.88999938964844
+2019-12-09 00:00:00 ------------------------
+0.14440413940581587  |  0.25
+TruePos:  9
+TrueNeg:  0
+FalsePos:  2
+FalseNeg:  11
+	Buying 0 Shares at 43.849998474121094
+
+Selling 1 Shares
+Bought at: 43.88999938964844  Sold at: 43.900001525878906
+Trade Profit: 0.01000213623046875 
+
+WIN!
+	Current Money 101.05000686645508
+	Current Cumulative Profit: 1.0500068664550781
+	Wins:  8  | Losses: 0
+	Win Percentage: 1.0
+	Return: 1.0105000686645509
+	Days Elapsed: 21
+
+
+2019-12-10 00:00:00 ------------------------
+-0.07128752838724375  |  -0.0800018310546875
+TruePos:  9
+TrueNeg:  0
+FalsePos:  2
+FalseNeg:  12
+
+Selling 0 Shares
+Bought at: 43.849998474121094  Sold at: 44.099998474121094
+Trade Profit: 0.0 
+
+WIN!
+	Current Money 101.05000686645508
+	Current Cumulative Profit: 1.0500068664550781
+	Wins:  9  | Losses: 0
+	Win Percentage: 1.0
+	Return: 1.0105000686645509
+	Days Elapsed: 22
+
+
+2019-12-11 00:00:00 ------------------------
+0.963882503801611  |  1.1199989318847656
+TruePos:  10
+TrueNeg:  0
+FalsePos:  2
+FalseNeg:  12
+	Buying 1 Shares at 44.54999923706055
+2019-12-12 00:00:00 ------------------------
+-0.12176405242718658  |  -0.6100006103515625
+TruePos:  10
+TrueNeg:  0
+FalsePos:  2
+FalseNeg:  13
+
+Selling 1 Shares
+Bought at: 44.54999923706055  Sold at: 45.66999816894531
+Trade Profit: 1.1199989318847656 
+
+WIN!
+	Current Money 102.17000579833984
+	Current Cumulative Profit: 2.1700057983398438
+	Wins:  10  | Losses: 0
+	Win Percentage: 1.0
+	Return: 1.0217000579833984
+	Days Elapsed: 24
+
+
+2019-12-13 00:00:00 ------------------------
+0.09867768444496325  |  0.18000030517578125
+TruePos:  11
+TrueNeg:  0
+FalsePos:  2
+FalseNeg:  13
+	Buying 1 Shares at 45.79999923706055
+2019-12-16 00:00:00 ------------------------
+0.00634131594976689  |  0.21999740600585938
+TruePos:  12
+TrueNeg:  0
+FalsePos:  2
+FalseNeg:  13
+	Buying 0 Shares at 46.220001220703125
+
+Selling 1 Shares
+Bought at: 45.79999923706055  Sold at: 45.97999954223633
+Trade Profit: 0.18000030517578125 
+
+WIN!
+	Current Money 102.35000610351562
+	Current Cumulative Profit: 2.350006103515625
+	Wins:  11  | Losses: 0
+	Win Percentage: 1.0
+	Return: 1.0235000610351563
+	Days Elapsed: 26
+
+
+2019-12-17 00:00:00 ------------------------
+0.18150993770568985  |  0.11999893188476562
+TruePos:  13
+TrueNeg:  0
+FalsePos:  2
+FalseNeg:  13
+	Buying 1 Shares at 46.52000045776367
+
+Selling 0 Shares
+Bought at: 46.220001220703125  Sold at: 46.439998626708984
+Trade Profit: 0.0 
+
+WIN!
+	Current Money 55.83000564575195
+	Current Cumulative Profit: 2.350006103515625
+	Wins:  12  | Losses: 0
+	Win Percentage: 1.0
+	Return: 0.5583000564575196
+	Days Elapsed: 27
+
+
+2019-12-18 00:00:00 ------------------------
+0.7138814188541515  |  0.7299995422363281
+TruePos:  14
+TrueNeg:  0
+FalsePos:  2
+FalseNeg:  13
+	Buying 0 Shares at 47.150001525878906
+
+Selling 1 Shares
+Bought at: 46.52000045776367  Sold at: 46.63999938964844
+Trade Profit: 0.11999893188476562 
+
+WIN!
+	Current Money 102.47000503540039
+	Current Cumulative Profit: 2.4700050354003906
+	Wins:  13  | Losses: 0
+	Win Percentage: 1.0
+	Return: 1.0247000503540038
+	Days Elapsed: 28
+
+
+2019-12-19 00:00:00 ------------------------
+-1.0008329162016265  |  -0.7999992370605469
+TruePos:  14
+TrueNeg:  0
+FalsePos:  2
+FalseNeg:  14
+
+Selling 0 Shares
+Bought at: 47.150001525878906  Sold at: 47.880001068115234
+Trade Profit: 0.0 
+
+WIN!
+	Current Money 102.47000503540039
+	Current Cumulative Profit: 2.4700050354003906
+	Wins:  14  | Losses: 0
+	Win Percentage: 1.0
+	Return: 1.0247000503540038
+	Days Elapsed: 29
+
+
+2019-12-20 00:00:00 ------------------------
+0.34205777541761945  |  0.5499992370605469
+TruePos:  15
+TrueNeg:  0
+FalsePos:  2
+FalseNeg:  14
+	Buying 1 Shares at 47.54999923706055
+2019-12-23 00:00:00 ------------------------
+-0.5162301272363671  |  -0.3800010681152344
+TruePos:  15
+TrueNeg:  0
+FalsePos:  2
+FalseNeg:  15
+
+Selling 1 Shares
+Bought at: 47.54999923706055  Sold at: 48.099998474121094
+Trade Profit: 0.5499992370605469 
+
+WIN!
+	Current Money 103.02000427246094
+	Current Cumulative Profit: 3.0200042724609375
+	Wins:  15  | Losses: 0
+	Win Percentage: 1.0
+	Return: 1.0302000427246094
+	Days Elapsed: 31
+
+
+2019-12-24 00:00:00 ------------------------
+0.01943967315053716  |  0.06999969482421875
+TruePos:  16
+TrueNeg:  0
+FalsePos:  2
+FalseNeg:  15
+	Buying 1 Shares at 47.779998779296875
+2019-12-26 00:00:00 ------------------------
+-0.19049972952691935  |  -0.220001220703125
+TruePos:  16
+TrueNeg:  0
+FalsePos:  2
+FalseNeg:  16
+
+Selling 1 Shares
+Bought at: 47.779998779296875  Sold at: 47.849998474121094
+Trade Profit: 0.06999969482421875 
+
+WIN!
+	Current Money 103.09000396728516
+	Current Cumulative Profit: 3.0900039672851562
+	Wins:  16  | Losses: 0
+	Win Percentage: 1.0
+	Return: 1.0309000396728516
+	Days Elapsed: 33
+
+
+2019-12-27 00:00:00 ------------------------
+-0.1113935308891642  |  -0.15999984741210938
+TruePos:  16
+TrueNeg:  0
+FalsePos:  2
+FalseNeg:  17
+2019-12-30 00:00:00 ------------------------
+0.22909753097556354  |  0.4199981689453125
+TruePos:  17
+TrueNeg:  0
+FalsePos:  2
+FalseNeg:  17
+	Buying 1 Shares at 47.540000915527344
+2019-12-31 00:00:00 ------------------------
+0.2909127306432695  |  0.3599967956542969
+TruePos:  18
+TrueNeg:  0
+FalsePos:  2
+FalseNeg:  17
+	Buying 0 Shares at 48.060001373291016
+
+Selling 1 Shares
+Bought at: 47.540000915527344  Sold at: 47.959999084472656
+Trade Profit: 0.4199981689453125 
+
+WIN!
+	Current Money 103.51000213623047
+	Current Cumulative Profit: 3.5100021362304688
+	Wins:  17  | Losses: 0
+	Win Percentage: 1.0
+	Return: 1.0351000213623047
+	Days Elapsed: 36
+
+
+2020-01-02 00:00:00 ------------------------
+-0.011580269695988646  |  -0.279998779296875
+TruePos:  18
+TrueNeg:  0
+FalsePos:  2
+FalseNeg:  18
+
+Selling 0 Shares
+Bought at: 48.060001373291016  Sold at: 48.41999816894531
+Trade Profit: 0.0 
+
+WIN!
+	Current Money 103.51000213623047
+	Current Cumulative Profit: 3.5100021362304688
+	Wins:  18  | Losses: 0
+	Win Percentage: 1.0
+	Return: 1.0351000213623047
+	Days Elapsed: 37
+
+
+2020-01-03 00:00:00 ------------------------
+0.5237516856347026  |  0.6599998474121094
+TruePos:  19
+TrueNeg:  0
+FalsePos:  2
+FalseNeg:  18
+	Buying 1 Shares at 47.13999938964844
+2020-01-06 00:00:00 ------------------------
+-0.2801794550605221  |  -0.22999954223632812
+TruePos:  19
+TrueNeg:  0
+FalsePos:  2
+FalseNeg:  19
+
+Selling 1 Shares
+Bought at: 47.13999938964844  Sold at: 47.79999923706055
+Trade Profit: 0.6599998474121094 
+
+WIN!
+	Current Money 104.17000198364258
+	Current Cumulative Profit: 4.170001983642578
+	Wins:  19  | Losses: 0
+	Win Percentage: 1.0
+	Return: 1.0417000198364257
+	Days Elapsed: 39
+
+
+2020-01-07 00:00:00 ------------------------
+0.5825732461716642  |  0.5499992370605469
+TruePos:  20
+TrueNeg:  0
+FalsePos:  2
+FalseNeg:  19
+	Buying 1 Shares at 46.970001220703125
+2020-01-08 00:00:00 ------------------------
+-0.47222857902688264  |  -0.470001220703125
+TruePos:  20
+TrueNeg:  0
+FalsePos:  2
+FalseNeg:  20
+
+Selling 1 Shares
+Bought at: 46.970001220703125  Sold at: 47.52000045776367
+Trade Profit: 0.5499992370605469 
+
+WIN!
+	Current Money 104.72000122070312
+	Current Cumulative Profit: 4.720001220703125
+	Wins:  20  | Losses: 0
+	Win Percentage: 1.0
+	Return: 1.0472000122070313
+	Days Elapsed: 41
+
+
+2020-01-09 00:00:00 ------------------------
+-0.2534301418548064  |  -0.34999847412109375
+TruePos:  20
+TrueNeg:  0
+FalsePos:  2
+FalseNeg:  21
+2020-01-10 00:00:00 ------------------------
+0.3977060233332826  |  0.6599998474121094
+TruePos:  21
+TrueNeg:  0
+FalsePos:  2
+FalseNeg:  21
+	Buying 1 Shares at 47.310001373291016
+2020-01-13 00:00:00 ------------------------
+-0.06479018545844807  |  -0.1699981689453125
+TruePos:  21
+TrueNeg:  0
+FalsePos:  2
+FalseNeg:  22
+
+Selling 1 Shares
+Bought at: 47.310001373291016  Sold at: 47.970001220703125
+Trade Profit: 0.6599998474121094 
+
+WIN!
+	Current Money 105.38000106811523
+	Current Cumulative Profit: 5.380001068115234
+	Wins:  21  | Losses: 0
+	Win Percentage: 1.0
+	Return: 1.0538000106811523
+	Days Elapsed: 44
+
+
+2020-01-14 00:00:00 ------------------------
+-0.020814957178435324  |  0.09000015258789062
+TruePos:  21
+TrueNeg:  0
+FalsePos:  3
+FalseNeg:  22
+2020-01-15 00:00:00 ------------------------
+0.5550817500756203  |  0.6699981689453125
+TruePos:  22
+TrueNeg:  0
+FalsePos:  3
+FalseNeg:  22
+	Buying 1 Shares at 48.380001068115234
+2020-01-16 00:00:00 ------------------------
+-0.0879542457823573  |  -0.29000091552734375
+TruePos:  22
+TrueNeg:  0
+FalsePos:  3
+FalseNeg:  23
+
+Selling 1 Shares
+Bought at: 48.380001068115234  Sold at: 49.04999923706055
+Trade Profit: 0.6699981689453125 
+
+WIN!
+	Current Money 106.04999923706055
+	Current Cumulative Profit: 6.049999237060547
+	Wins:  22  | Losses: 0
+	Win Percentage: 1.0
+	Return: 1.0604999923706055
+	Days Elapsed: 47
+
+
+2020-01-17 00:00:00 ------------------------
+-0.15050097460622813  |  -0.15999984741210938
+TruePos:  22
+TrueNeg:  0
+FalsePos:  3
+FalseNeg:  24
+2020-01-21 00:00:00 ------------------------
+-0.04322025470008986  |  -0.20999908447265625
+TruePos:  22
+TrueNeg:  0
+FalsePos:  3
+FalseNeg:  25
+2020-01-22 00:00:00 ------------------------
+0.1650397602163812  |  0.0
+TruePos:  22
+TrueNeg:  0
+FalsePos:  3
+FalseNeg:  25
+	Buying 1 Shares at 49.0
+2020-01-23 00:00:00 ------------------------
+-0.4141878895724328  |  -0.37000274658203125
+TruePos:  22
+TrueNeg:  0
+FalsePos:  3
+FalseNeg:  26
+
+Selling 1 Shares
+Bought at: 49.0  Sold at: 49.0
+Trade Profit: 0.0 
+
+Loss :(
+	Current Money 106.04999923706055
+	Current Cumulative Profit: 6.049999237060547
+	Wins:  22  | Losses: 1
+	Win Percentage: 0.9565217391304348
+	Return: 1.0604999923706055
+	Days Elapsed: 51
+
+
+2020-01-24 00:00:00 ------------------------
+-0.35248097547999996  |  -0.4199981689453125
+TruePos:  22
+TrueNeg:  0
+FalsePos:  3
+FalseNeg:  27
+2020-01-27 00:00:00 ------------------------
+0.1288673753654794  |  0.25
+TruePos:  23
+TrueNeg:  0
+FalsePos:  3
+FalseNeg:  27
+	Buying 1 Shares at 47.52000045776367
+2020-01-28 00:00:00 ------------------------
+-0.7865002010291064  |  -0.9200019836425781
+TruePos:  23
+TrueNeg:  0
+FalsePos:  3
+FalseNeg:  28
+
+Selling 1 Shares
+Bought at: 47.52000045776367  Sold at: 47.77000045776367
+Trade Profit: 0.25 
+
+WIN!
+	Current Money 106.29999923706055
+	Current Cumulative Profit: 6.299999237060547
+	Wins:  23  | Losses: 1
+	Win Percentage: 0.9583333333333334
+	Return: 1.0629999923706055
+	Days Elapsed: 54
+
+
+2020-01-29 00:00:00 ------------------------
+0.33102436777031685  |  0.7000007629394531
+TruePos:  24
+TrueNeg:  0
+FalsePos:  3
+FalseNeg:  28
+	Buying 1 Shares at 46.540000915527344
+2020-01-30 00:00:00 ------------------------
+-1.056084447101455  |  -1.0200004577636719
+TruePos:  24
+TrueNeg:  0
+FalsePos:  3
+FalseNeg:  29
+
+Selling 1 Shares
+Bought at: 46.540000915527344  Sold at: 47.2400016784668
+Trade Profit: 0.7000007629394531 
+
+WIN!
+	Current Money 107.0
+	Current Cumulative Profit: 7.0
+	Wins:  24  | Losses: 1
+	Win Percentage: 0.96
+	Return: 1.07
+	Days Elapsed: 56
+
+
+2020-01-31 00:00:00 ------------------------
+0.1883621139624026  |  0.12999725341796875
+TruePos:  25
+TrueNeg:  0
+FalsePos:  3
+FalseNeg:  29
+	Buying 1 Shares at 46.400001525878906
+2020-02-03 00:00:00 ------------------------
+0.3315766579327321  |  0.3999977111816406
+TruePos:  26
+TrueNeg:  0
+FalsePos:  3
+FalseNeg:  29
+	Buying 0 Shares at 47.220001220703125
+
+Selling 1 Shares
+Bought at: 46.400001525878906  Sold at: 46.529998779296875
+Trade Profit: 0.12999725341796875 
+
+WIN!
+	Current Money 107.12999725341797
+	Current Cumulative Profit: 7.129997253417969
+	Wins:  25  | Losses: 1
+	Win Percentage: 0.9615384615384616
+	Return: 1.0712999725341796
+	Days Elapsed: 58
+
+
+2020-02-04 00:00:00 ------------------------
+0.02293539341957889  |  0.11999893188476562
+TruePos:  27
+TrueNeg:  0
+FalsePos:  3
+FalseNeg:  29
+	Buying 1 Shares at 48.33000183105469
+
+Selling 0 Shares
+Bought at: 47.220001220703125  Sold at: 47.619998931884766
+Trade Profit: 0.0 
+
+WIN!
+	Current Money 58.79999542236328
+	Current Cumulative Profit: 7.129997253417969
+	Wins:  26  | Losses: 1
+	Win Percentage: 0.9629629629629629
+	Return: 0.5879999542236328
+	Days Elapsed: 59
+
+
+2020-02-05 00:00:00 ------------------------
+
+Selling 1 Shares
+Bought at: 48.33000183105469  Sold at: 48.45000076293945
+Trade Profit: 0.11999893188476562 
+
+WIN!
+	Current Money: 107.24999618530273
+	Current Cumulative Profit: 7.249996185302734
+	Wins:  27  | Losses: 1
+	Win Percentage: 0.9642857142857143
+	Return: 1.0724999618530273
+	Days Elapsed: 60
+
+
+
+Summary:
+	Total Money: 107.24999618530273
+	Cumulative  Profit: 7.249996185302734
+	Wins:  27  | Losses: 1
+	Win Percentage: 0.9642857142857143
+	Return: 1.0724999618530273
+	Days Elapsed: 61

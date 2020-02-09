@@ -211,8 +211,14 @@ for stock in stockFile:
         #print(targetAtts)
         #print(xTrain[len(xTrain)-1])
 
-        model = MLPRegressor(solver = 'adam', activation = 'relu', hidden_layer_sizes = [128, 128, 128, 128])
-        model.fit(xTrain, yTrain)
-        pred = model.predict(targetAtts)[0]
+        CROSS_VAL = 10
+        predSum = 0
+        for i in range(CROSS_VAL):
+            model = MLPRegressor(solver = 'adam', activation = 'relu', hidden_layer_sizes = [128,128,128, 128], max_iter=1000)
+            model.fit(xTrain, yTrain)
+            pred = model.predict(targetAtts)[0]
+            predSum += pred
+        pred = predSum/CROSS_VAL
+        
         print(date, " | ", stock, " | ", PERIOD, " | ", pred)
     print("\n")

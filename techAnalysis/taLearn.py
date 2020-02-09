@@ -255,10 +255,21 @@ while end + 1 + TARGET_PERIOD < df.shape[0]:
     #print(xTrain.shape)
     #sprint(yTrain.shape)
 
+    CROSS_VAL = 10
+    predSum = 0
+    for i in range(CROSS_VAL):
+        model = MLPRegressor(solver = 'adam', activation = 'relu', hidden_layer_sizes = [128,128,128, 128], max_iter=1000)
+        model.fit(xTrain, yTrain)
+        pred = model.predict(targetAtts)[0]
+        predSum += pred
+    pred = predSum/CROSS_VAL
+
+    """
     model = MLPRegressor(solver = 'adam', activation = 'relu', hidden_layer_sizes = [128,128,128, 128], max_iter=1000)
     model.fit(xTrain, yTrain)
     pred = model.predict(targetAtts)[0]
-
+    """
+    
     #Do something with percentage here
     print(dateDf.iloc[end], "------------------------")
     print(pred, " | ", targetLabel)
