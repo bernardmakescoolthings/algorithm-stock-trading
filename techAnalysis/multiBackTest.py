@@ -5,6 +5,7 @@ import ta
 import sys
 import math
 import copy
+import os
 
 import datetime
 from datetime import datetime, timedelta
@@ -107,21 +108,25 @@ def populateDataframe(df):
     return df;
 
 
+
 periodArr = [100, 150, 200, 250]
+
+dateArr = START_DATE.split("-")
+startDateObj = datetime(int(dateArr[0]), int(dateArr[1]), int(dateArr[2]))
+startDatePath = "output/predictions/" + START_DATE + "/"
+if not os.path.exists(startDatePath):
+    os.makedirs(startDatePath)
 
 stockFile = open("stocks.txt", "r")
 for STOCK in stockFile:
     STOCK = STOCK.split()[0]
     for PERIOD in periodArr:
-        out = "test/" + STOCK + str(PERIOD)+".txt"
+        out = startDatePath + STOCK +"-"+ str(PERIOD)+".txt"
         outFile = open(out, "w")
 
         print("Loading Dataframe", file=outFile)
 
-        dateArr = START_DATE.split("-")
-
-        startDate = datetime(int(dateArr[0]), int(dateArr[1]), int(dateArr[2]))
-        startDate = sub_business_days(startDate, PERIOD)
+        startDate = sub_business_days(startDateObj, PERIOD)
 
         df = pdr.get_data_yahoo(STOCK, start=startDate)
 
@@ -214,7 +219,7 @@ for STOCK in stockFile:
         dataArray = df.to_numpy()
 
 
-        INITIALINVEST = 100
+        INITIALINVEST = 5000
 
         currentMoney = INITIALINVEST
 

@@ -108,11 +108,13 @@ def populateDataframe(df):
 
     return df;
 
+
 print("Loading Dataframe")
 
 dateArr = START_DATE.split("-")
 
 startDate = datetime(int(dateArr[0]), int(dateArr[1]), int(dateArr[2]))
+
 startDate = sub_business_days(startDate, PERIOD)
 
 df = pdr.get_data_yahoo(STOCK, start=startDate)
@@ -206,7 +208,7 @@ df["Adj Close"] = AdjClose
 dataArray = df.to_numpy()
 
 
-INITIALINVEST = 100
+INITIALINVEST = 5000
 
 currentMoney = INITIALINVEST
 
@@ -260,8 +262,8 @@ while end + 1 + TARGET_PERIOD < df.shape[0]:
     for i in range(CROSS_VAL):
         model = MLPRegressor(solver = 'adam', activation = 'relu', hidden_layer_sizes = [128,128,128, 128], max_iter=1000)
         model.fit(xTrain, yTrain)
-        pred = model.predict(targetAtts)[0]
-        predSum += pred
+        predSingle = model.predict(targetAtts)[0]
+        predSum += predSingle
     pred = predSum/CROSS_VAL
 
     """
@@ -269,7 +271,7 @@ while end + 1 + TARGET_PERIOD < df.shape[0]:
     model.fit(xTrain, yTrain)
     pred = model.predict(targetAtts)[0]
     """
-    
+
     #Do something with percentage here
     print(dateDf.iloc[end], "------------------------")
     print(pred, " | ", targetLabel)
