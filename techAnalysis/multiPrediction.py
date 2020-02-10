@@ -236,6 +236,7 @@ for stock in stockFile:
             pred = model.predict(targetAtts)[0]
             predSum += pred
         pred = predSum/CROSS_VAL
+        periodSum += pred
 
         print(date, " | ", stock, " | ", PERIOD, " | ", pred, file=outFile, flush=True)
 

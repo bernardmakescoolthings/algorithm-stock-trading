@@ -114,11 +114,9 @@ print("Loading Dataframe")
 dateArr = START_DATE.split("-")
 
 startDate = datetime(int(dateArr[0]), int(dateArr[1]), int(dateArr[2]))
-print("Calculating")
 startDate = sub_business_days(startDate, PERIOD)
 
 df = pdr.get_data_yahoo(STOCK, start=startDate)
-print("Done")
 
 #df = pd.read_csv(CSV)
 """
