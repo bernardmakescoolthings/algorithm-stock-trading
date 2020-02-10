@@ -1,0 +1,178 @@
+Loading Dataframe
+Populating Dataframe
+Calculating Labels from Target Period
+Entering Program
+2020-01-23 00:00:00 ------------------------
+-0.22599882160293547  |  -0.2999992370605469
+TruePos:  0
+TrueNeg:  0
+FalsePos:  0
+FalseNeg:  1
+2020-01-24 00:00:00 ------------------------
+0.2469012855443795  |  0.24000167846679688
+TruePos:  1
+TrueNeg:  0
+FalsePos:  0
+FalseNeg:  1
+	Buying 122 Shares at 20.3799991607666
+2020-01-27 00:00:00 ------------------------
+0.2606461274403694  |  0.2599983215332031
+TruePos:  2
+TrueNeg:  0
+FalsePos:  0
+FalseNeg:  1
+	Buying 59 Shares at 20.950000762939453
+
+Selling 122 Shares
+Bought at: 20.3799991607666  Sold at: 20.6200008392334
+Trade Profit: 29.28020477294922 
+
+WIN!
+	Current Money 3793.2301597595215
+	Current Cumulative Profit: 29.28020477294922
+	Wins:  1  | Losses: 0
+	Win Percentage: 1
+	Return: 0.7586460319519043
+	Days Elapsed: 2
+
+
+2020-01-28 00:00:00 ------------------------
+0.19118620454444502  |  0.13000106811523438
+TruePos:  3
+TrueNeg:  0
+FalsePos:  0
+FalseNeg:  1
+	Buying 88 Shares at 21.389999389648438
+
+Selling 59 Shares
+Bought at: 20.950000762939453  Sold at: 21.209999084472656
+Trade Profit: 15.339900970458984 
+
+WIN!
+	Current Money 3162.3001594543457
+	Current Cumulative Profit: 44.6201057434082
+	Wins:  2  | Losses: 0
+	Win Percentage: 1
+	Return: 0.6324600318908692
+	Days Elapsed: 3
+
+
+2020-01-29 00:00:00 ------------------------
+-0.08131609327741118  |  -0.1999988555908203
+TruePos:  3
+TrueNeg:  0
+FalsePos:  0
+FalseNeg:  2
+
+Selling 88 Shares
+Bought at: 21.389999389648438  Sold at: 21.520000457763672
+Trade Profit: 11.440093994140625 
+
+WIN!
+	Current Money 5056.060199737549
+	Current Cumulative Profit: 56.06019973754883
+	Wins:  3  | Losses: 0
+	Win Percentage: 1
+	Return: 1.0112120399475097
+	Days Elapsed: 4
+
+
+2020-01-30 00:00:00 ------------------------
+-0.13473303944180862  |  -0.2800006866455078
+TruePos:  3
+TrueNeg:  0
+FalsePos:  0
+FalseNeg:  3
+2020-01-31 00:00:00 ------------------------
+0.3679363665653318  |  0.4799995422363281
+TruePos:  4
+TrueNeg:  0
+FalsePos:  0
+FalseNeg:  3
+	Buying 124 Shares at 20.31999969482422
+2020-02-03 00:00:00 ------------------------
+0.1474621824060187  |  0.25
+TruePos:  5
+TrueNeg:  0
+FalsePos:  0
+FalseNeg:  3
+	Buying 60 Shares at 20.899999618530273
+
+Selling 124 Shares
+Bought at: 20.31999969482422  Sold at: 20.799999237060547
+Trade Profit: 59.51994323730469 
+
+WIN!
+	Current Money 3861.580165863037
+	Current Cumulative Profit: 115.58014297485352
+	Wins:  4  | Losses: 0
+	Win Percentage: 1
+	Return: 0.7723160331726074
+	Days Elapsed: 7
+
+
+2020-02-04 00:00:00 ------------------------
+0.11012452440750094  |  0.3099994659423828
+TruePos:  6
+TrueNeg:  0
+FalsePos:  0
+FalseNeg:  3
+	Buying 92 Shares at 20.790000915527344
+
+Selling 60 Shares
+Bought at: 20.899999618530273  Sold at: 21.149999618530273
+Trade Profit: 15.0 
+
+WIN!
+	Current Money 3217.900058746338
+	Current Cumulative Profit: 130.58014297485352
+	Wins:  5  | Losses: 0
+	Win Percentage: 1
+	Return: 0.6435800117492676
+	Days Elapsed: 8
+
+
+2020-02-05 00:00:00 ------------------------
+0.793604169365418  |  1.6100006103515625
+TruePos:  7
+TrueNeg:  0
+FalsePos:  0
+FalseNeg:  3
+	Buying 74 Shares at 21.59000015258789
+
+Selling 92 Shares
+Bought at: 20.790000915527344  Sold at: 21.100000381469727
+Trade Profit: 28.51995086669922 
+
+WIN!
+	Current Money 3561.440082550049
+	Current Cumulative Profit: 159.10009384155273
+	Wins:  6  | Losses: 0
+	Win Percentage: 1
+	Return: 0.7122880165100097
+	Days Elapsed: 9
+
+
+2020-02-06 00:00:00 ------------------------
+
+Selling 74 Shares
+Bought at: 21.59000015258789  Sold at: 23.200000762939453
+Trade Profit: 119.14004516601562 
+
+WIN!
+	Current Money: 5278.240139007568
+	Current Cumulative Profit: 278.24013900756836
+	Wins:  7  | Losses: 0
+	Win Percentage: 1
+	Return: 1.0556480278015137
+	Days Elapsed: 10
+
+
+
+Summary:
+	Total Money: 5278.240139007568
+	Cumulative  Profit: 278.24013900756836
+	Wins:  7  | Losses: 0
+	Win Percentage: 1
+	Return: 1.0556480278015137
+	Days Elapsed: 11

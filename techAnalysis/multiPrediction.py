@@ -142,7 +142,7 @@ for stock in stockFile:
 
     for PERIOD in periodArr:
 
-        dateObj = sub_business_days(datetime.now(), 3)
+        dateObj = sub_business_days(datetime.now(), 1)
         dateStartObj = dateObj - timedelta(days=PERIOD)
 
         dateEnd = str(dateObj.year) + "-" + str(dateObj.month) + "-"+ str(dateObj.day)
@@ -207,7 +207,7 @@ for stock in stockFile:
         #df.drop(df.tail(TARGET_PERIOD).index,inplace=True)
 
         df["Label"] = labels
-        date = dateDf[len(dateDf)-1]
+        date = str(dateDf[len(dateDf)-1]).split()[0]
 
 
 
