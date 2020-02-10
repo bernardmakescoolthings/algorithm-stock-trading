@@ -1,13 +1,13 @@
 import pandas as pd
 import sys
 
-if len(sys.argv) != 2:
+if len(sys.argv) != 3:
     print("Error with command line arguments")
     sys.exit()
 else:
     DATE = sys.argv[1] #MONTH/DAY/YEAR
-
-data = pd.read_csv("transactions.csv")
+    FILENAME = sys.argv[2]
+data = pd.read_csv(FILENAME)
 
 stockDict = {};
 
@@ -53,15 +53,15 @@ for index, row in data.iterrows():
         stockObj = stockDict[row["SYMBOL"]]
         stockObj["SellPrice"] = row["PRICE"]
 
-    else:
-        print("There was an error fix it")
+    #else:
+        #print("There was an error fix it")
 
 print("Stock Specifics:")
 for key, value in stockDict.items():
     bought = value["BuyPrice"]
     sold = value["SellPrice"]
     profit = (sold - bought) * value["Quantity"]
-    profitPercentage = (sold - bought)/bought
+    profitPercentage = (sold - bought)/bought * 100
     stockDict[key]["Profit"] = profit
     stockDict[key]["ProfitPercentage"] = profitPercentage
     print(key, "| Profit: ", profit, "| Profit Percentage: ", profitPercentage, "\n")
@@ -69,11 +69,14 @@ for key, value in stockDict.items():
 
 profitActual = 0
 profitPercentage = 0
+totalSpent = 0
 for key, value in stockDict.items():
     profitActual += value["Profit"]
     profitPercentage += value["ProfitPercentage"]
-
+    totalSpent += value["BuyPrice"]
 
 print("Day Summary")
+print("Total Spent", totalSpent)
 print("Total Profit: ", profitActual)
 print("Total Profit Percentage: ", profitPercentage)
+print("Day Return: ", profit/totalSpent * 100)

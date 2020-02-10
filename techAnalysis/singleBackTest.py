@@ -118,7 +118,9 @@ startDate = datetime(int(dateArr[0]), int(dateArr[1]), int(dateArr[2]))
 
 startDate = sub_business_days(startDate, PERIOD)
 
+print("hi")
 df = pdr.get_data_yahoo(STOCK, start=startDate)
+print("Bie")
 
 #df = pd.read_csv(CSV)
 """
