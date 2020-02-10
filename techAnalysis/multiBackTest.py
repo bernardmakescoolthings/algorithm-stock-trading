@@ -113,7 +113,7 @@ periodArr = [100, 150, 200, 250]
 
 dateArr = START_DATE.split("-")
 startDateObj = datetime(int(dateArr[0]), int(dateArr[1]), int(dateArr[2]))
-startDatePath = "output/predictions/" + START_DATE + "/"
+startDatePath = "output/backtest/" + START_DATE + "/"
 if not os.path.exists(startDatePath):
     os.makedirs(startDatePath)
 
@@ -124,7 +124,7 @@ for STOCK in stockFile:
         out = startDatePath + STOCK +"-"+ str(PERIOD)+".txt"
         outFile = open(out, "w")
 
-        print("Loading Dataframe", file=outFile)
+        print("Loading Dataframe", file=outFile, flush=True)
 
         startDate = sub_business_days(startDateObj, PERIOD)
 
@@ -144,10 +144,10 @@ for STOCK in stockFile:
         """
         INITIALDF = copy.copy(df)
         #print(len(df.index))
-        print("Populating Dataframe", file=outFile)
+        print("Populating Dataframe", file=outFile, flush=True)
         df = populateDataframe(df)
         df = df.reset_index()
-        print("Calculating Labels from Target Period", file=outFile)
+        print("Calculating Labels from Target Period", file=outFile, flush=True)
         for i in range(len(df)):
             if i + TARGET_PERIOD >= df.shape[0]:
                 break
@@ -233,7 +233,7 @@ for STOCK in stockFile:
                             "Buy": False,
                             })
 
-        print("Entering Program", file=outFile)
+        print("Entering Program", file=outFile, flush=True)
         start = 0;
         end = start + PERIOD;
 
@@ -260,7 +260,7 @@ for STOCK in stockFile:
             targetAtts = targetAtts.reshape(1, -1)
             targetLabel = dataArray[end,-1]
 
-            xTrain = dataArray[start:end - 1,:-1]
+            xTrain = dataArray[start:end -1,:-1]
             yTrain = dataArray[start:end -1,-1]
 
             #print(targetAtts.shape)
@@ -278,8 +278,8 @@ for STOCK in stockFile:
             pred = predSum/CROSS_VAL
 
             #Do something with percentage here
-            print(dateDf.iloc[end], "------------------------", file=outFile)
-            print(pred, " | ", targetLabel, file=outFile)
+            print(dateDf.iloc[end], "------------------------", file=outFile, flush=True)
+            print(pred, " | ", targetLabel, file=outFile, flush=True)
             if pred > 0 and targetLabel > 0:
                 TruePos += 1
             elif pred > 0 and targetLabel <0:
@@ -289,16 +289,16 @@ for STOCK in stockFile:
             elif pred < 0 and targetLabel < 0:
                 FalseNeg += 1
 
-            print("TruePos: ", TruePos, file=outFile)
-            print("TrueNeg: ", TrueNeg, file=outFile)
-            print("FalsePos: ", FalsePos, file=outFile)
-            print("FalseNeg: ", FalseNeg, file=outFile)
+            print("TruePos: ", TruePos, file=outFile, flush=True)
+            print("TrueNeg: ", TrueNeg, file=outFile, flush=True)
+            print("FalsePos: ", FalsePos, file=outFile, flush=True)
+            print("FalseNeg: ", FalseNeg, file=outFile, flush=True)
 
             if pred >= 0:
                 sharePrice = INITIALDF.iloc[end+1]['Open']
                 sharesToBuy = math.floor((currentMoney/2)/sharePrice)
                 currentMoney -= sharePrice * sharesToBuy
-                print("\tBuying", sharesToBuy, "Shares at", sharePrice, file=outFile)
+                print("\tBuying", sharesToBuy, "Shares at", sharePrice, file=outFile, flush=True)
                 tracker.append({
                                 "Shares": sharesToBuy,
                                 "Profit": targetLabel,
@@ -321,58 +321,67 @@ for STOCK in stockFile:
 
                 profit += tradeProfit
                 currentMoney += tracker[dayCnt].get("BuyInvestment") + tradeProfit
-                print("\nSelling", tracker[dayCnt].get("Shares"), "Shares", file=outFile)
-                print("Bought at:", tracker[dayCnt].get("BuyPrice"), " Sold at:", INITIALDF.iloc[end]["Close"], file=outFile)
-                print("Trade Profit:", tradeProfit, "\n", file=outFile)
+                print("\nSelling", tracker[dayCnt].get("Shares"), "Shares", file=outFile, flush=True)
+                print("Bought at:", tracker[dayCnt].get("BuyPrice"), " Sold at:", INITIALDF.iloc[end]["Close"], file=outFile, flush=True)
+                print("Trade Profit:", tradeProfit, "\n", file=outFile, flush=True)
                 if tracker[start].get("Profit") > 0:
-                    print("WIN!", file=outFile)
+                    print("WIN!", file=outFile, flush=True)
                     wins += 1
                 else:
-                    print("Loss :(", file=outFile)
+                    print("Loss :(", file=outFile, flush=True)
                     losses += 1
-                print("\tCurrent Money", currentMoney, file=outFile)
-                print("\tCurrent Cumulative Profit:" , profit, file=outFile)
-                print("\tWins: ", wins, " | Losses:", losses, file=outFile)
-                print("\tWin Percentage:", wins/ (losses + wins), file=outFile)
-                print("\tReturn:", currentMoney/INITIALINVEST, file=outFile)
-                print("\tDays Elapsed:", dayCnt, file=outFile)
-                print("\n", file=outFile)
+                print("\tCurrent Money", currentMoney, file=outFile, flush=True)
+                print("\tCurrent Cumulative Profit:" , profit, file=outFile, flush=True)
+                print("\tWins: ", wins, " | Losses:", losses, file=outFile, flush=True)
+                if losses != 0:
+                    print("\tWin Percentage:", wins/ (losses + wins), file=outFile, flush=True)
+                else:
+                    print("\tWin Percentage:", 1, file=outFile, flush=True)
+                print("\tReturn:", currentMoney/INITIALINVEST, file=outFile, flush=True)
+                print("\tDays Elapsed:", dayCnt, file=outFile, flush=True)
+                print("\n", file=outFile, flush=True)
             dayCnt += 1
             start += 1
             end += 1
 
         while dayCnt < len(tracker):
 
-            print( dateDf.iloc[end], "------------------------", file=outFile)
+            print( dateDf.iloc[end], "------------------------", file=outFile, flush=True)
             if tracker[dayCnt].get("Buy") == True:
                 tradeProfit = tracker[dayCnt].get("Profit") * tracker[dayCnt].get("Shares")
                 #print(tracker[dayCnt].get("Profit"), " | ", INITIALDF.iloc[end]["Close"] - tracker[dayCnt].get("BuyPrice"))
                 profit += tradeProfit
                 currentMoney += tracker[dayCnt].get("BuyInvestment") + tradeProfit
-                print("\nSelling", tracker[dayCnt].get("Shares"), "Shares", file=outFile)
-                print("Bought at:", tracker[dayCnt].get("BuyPrice"), " Sold at:", INITIALDF.iloc[end]["Close"], file=outFile)
-                print("Trade Profit:", tradeProfit, "\n", file=outFile)
+                print("\nSelling", tracker[dayCnt].get("Shares"), "Shares", file=outFile, flush=True)
+                print("Bought at:", tracker[dayCnt].get("BuyPrice"), " Sold at:", INITIALDF.iloc[end]["Close"], file=outFile, flush=True)
+                print("Trade Profit:", tradeProfit, "\n", file=outFile, flush=True)
                 if tracker[start].get("Profit") > 0:
-                    print("WIN!", file=outFile)
+                    print("WIN!", file=outFile, flush=True)
                     wins += 1
                 else:
-                    print("Loss :(", file=outFile)
+                    print("Loss :(", file=outFile, flush=True)
                     losses += 1
-                print("\tCurrent Money:", currentMoney, file=outFile)
-                print("\tCurrent Cumulative Profit:" , profit, file=outFile)
-                print("\tWins: ", wins, " | Losses:", losses, file=outFile)
-                print("\tWin Percentage:", wins/ (losses + wins), file=outFile)
-                print("\tReturn:", currentMoney/INITIALINVEST, file=outFile)
-                print("\tDays Elapsed:", dayCnt, file=outFile)
-                print("\n", file=outFile)
+                print("\tCurrent Money:", currentMoney, file=outFile, flush=True)
+                print("\tCurrent Cumulative Profit:" , profit, file=outFile, flush=True)
+                print("\tWins: ", wins, " | Losses:", losses, file=outFile, flush=True)
+                if losses != 0:
+                    print("\tWin Percentage:", wins/ (losses + wins), file=outFile, flush=True)
+                else:
+                    print("\tWin Percentage:", 1, file=outFile, flush=True)
+                print("\tReturn:", currentMoney/INITIALINVEST, file=outFile, flush=True)
+                print("\tDays Elapsed:", dayCnt, file=outFile, flush=True)
+                print("\n", file=outFile, flush=True)
             dayCnt += 1
             start+=1
             end += 1
 
-        print("\nSummary:", file=outFile)
-        print("\tTotal Money:", currentMoney, file=outFile)
-        print("\tCumulative  Profit:" , profit, file=outFile)
-        print("\tWins: ", wins, " | Losses:", losses, file=outFile)
-        print("\tWin Percentage:", wins/ (losses + wins), file=outFile)
-        print("\tReturn:", currentMoney/INITIALINVEST, file=outFile)
-        print("\tDays Elapsed:", dayCnt, file=outFile)
+        print("\nSummary:", file=outFile, flush=True)
+        print("\tTotal Money:", currentMoney, file=outFile, flush=True)
+        print("\tCumulative  Profit:" , profit, file=outFile, flush=True)
+        print("\tWins: ", wins, " | Losses:", losses, file=outFile, flush=True)
+        if losses != 0:
+            print("\tWin Percentage:", wins/ (losses + wins), file=outFile, flush=True)
+        else:
+            print("\tWin Percentage:", 1, file=outFile, flush=True)
+        print("\tReturn:", currentMoney/INITIALINVEST, file=outFile, flush=True)
+        print("\tDays Elapsed:", dayCnt, file=outFile, flush=True)

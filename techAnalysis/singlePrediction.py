@@ -20,12 +20,11 @@ from sklearn.neural_network import MLPRegressor
 from sklearn.decomposition import PCA
 
 
-if len(sys.argv) != 3:
+if len(sys.argv) != 2:
     print("Error with command line arguments")
     sys.exit()
 else:
     STOCK = sys.argv[1]
-    PERIOD = int(sys.argv[2])
 
 #Supress Warnings
 #import warnings
@@ -125,107 +124,110 @@ else:
     sys.exit()
 """
 
+periodArr = [100, 150, 200, 250]
+periodSum = 0
 
-dateObj = datetime.now() - timedelta(days=1)
-dateStartObj = datetime.now() - timedelta(days=PERIOD)
+for PERIOD in periodArr:
+    dateObj = datetime.now() - timedelta(days=1)
+    dateStartObj = datetime.now() - timedelta(days=PERIOD)
 
-dateEnd = str(dateObj.year) + "-" + str(dateObj.month) + "-"+ str(dateObj.day)
-dateStart = str(dateStartObj.year) + "-" + str(dateStartObj.month) + "-"+ str(dateStartObj.day)
+    dateEnd = str(dateObj.year) + "-" + str(dateObj.month) + "-"+ str(dateObj.day)
+    dateStart = str(dateStartObj.year) + "-" + str(dateStartObj.month) + "-"+ str(dateStartObj.day)
 
-df = pdr.get_data_yahoo(STOCK, start=dateStart, end=dateEnd)
-#print(df.head())
-#print(df)
-print(df.tail())
+    df = pdr.get_data_yahoo(STOCK, start=dateStart, end=dateEnd)
+    #print(df.head())
+    #print(df)
+    #print(df.tail())
 
-print("Populating Dataframe")
-df = populateDataframe(df)
-df = df.reset_index()
+    #print("Populating Dataframe")
+    df = populateDataframe(df)
+    df = df.reset_index()
 
-#df.to_csv("TmpDataframe.csv", sep='\t')
-for i in range(len(df)):
-    if i + TARGET_PERIOD >= df.shape[0]:
-        break
-    ## Compare to between close price and the targets close rpice
-    #difference = df.iloc[i + PERIOD].Close - df.iloc[i].Close
+    #df.to_csv("TmpDataframe.csv", sep='\t')
+    for i in range(len(df)):
+        if i + TARGET_PERIOD >= df.shape[0]:
+            break
+        ## Compare to between close price and the targets close rpice
+        #difference = df.iloc[i + PERIOD].Close - df.iloc[i].Close
 
-    #For one day do difference in open and Close
-    difference = df.iloc[i+TARGET_PERIOD].Close - df.iloc[i].Close
-    #print(difference)
-    #Can do binary here or regression
-    #if(difference > 0):
-    df.loc[i, 'Label'] = difference
+        #For one day do difference in open and Close
+        difference = df.iloc[i+TARGET_PERIOD].Close - df.iloc[i].Close
+        #print(difference)
+        #Can do binary here or regression
+        #if(difference > 0):
+        df.loc[i, 'Label'] = difference
 
-    #print(difference)
+        #print(difference)
 
-dateDf = df['Date']
-#df = df.drop(['Date'], axis=1)
-df = df.drop(['Date', 'High', 'Low', 'Open', 'Close', 'Volume', 'Adj Close'], axis=1)
-df = df.fillna(0)
-
-
-
-labels = df["Label"]
-"""
-High = df["High"]
-Low = df["Low"]
-Open = df["Open"]
-Close = df["Close"]
-Volume = df["Volume"]
-AdjClose = df["Adj Close"]
-"""
-
-#Normalize the Data
-dforiginal = df
-x = df.values
-scaler = preprocessing.MinMaxScaler()
-xScaled = scaler.fit_transform(x)
-df = pd.DataFrame(xScaled)
-df.columns = dforiginal.columns
-
-"""
-# Dimensionality Reduction
-PCA_COMPONENTS = 8
-
-pca = PCA(n_components=PCA_COMPONENTS)
-pca.fit(df)
-df = pd.DataFrame(pca.transform(df), columns=['PCA%i' % i for i in range(PCA_COMPONENTS)], index=df.index)
-"""
-
-#df.drop(df.tail(TARGET_PERIOD).index,inplace=True)
-
-df["Label"] = labels
-print(dateDf[len(dateDf)-1])
+    dateDf = df['Date']
+    #df = df.drop(['Date'], axis=1)
+    df = df.drop(['Date', 'High', 'Low', 'Open', 'Close', 'Volume', 'Adj Close'], axis=1)
+    df = df.fillna(0)
 
 
 
-dataArray = df.to_numpy()
-#targetAtts = targetAtts.to_numpy()
+    labels = df["Label"]
+    """
+    High = df["High"]
+    Low = df["Low"]
+    Open = df["Open"]
+    Close = df["Close"]
+    Volume = df["Volume"]
+    AdjClose = df["Adj Close"]
+    """
+
+    #Normalize the Data
+    dforiginal = df
+    x = df.values
+    scaler = preprocessing.MinMaxScaler()
+    xScaled = scaler.fit_transform(x)
+    df = pd.DataFrame(xScaled)
+    df.columns = dforiginal.columns
+
+    """
+    # Dimensionality Reduction
+    PCA_COMPONENTS = 8
+
+    pca = PCA(n_components=PCA_COMPONENTS)
+    pca.fit(df)
+    df = pd.DataFrame(pca.transform(df), columns=['PCA%i' % i for i in range(PCA_COMPONENTS)], index=df.index)
+    """
+
+    #df.drop(df.tail(TARGET_PERIOD).index,inplace=True)
+
+    df["Label"] = labels
+    date = str(dateDf[len(dateDf)-1]).split()[0]
+    #print(dateDf[len(dateDf)-1])
 
 
-targetAtts = dataArray[dataArray.shape[0]-TARGET_PERIOD,:-1]
-targetAtts = targetAtts.reshape(1, -1)
-xTrain = dataArray[:dataArray.shape[0]-TARGET_PERIOD,:-1]
-yTrain = dataArray[:dataArray.shape[0]-TARGET_PERIOD,-1]
 
-#print(targetAtts.shape)
-#print(targetLabel.shape)
-#print(xTrain.shape)
-#sprint(yTrain.shape)
+    dataArray = df.to_numpy()
+    #targetAtts = targetAtts.to_numpy()
 
-#print(targetAtts)
-#print(xTrain[len(xTrain)-1])
 
-CROSS_VAL = 10
-predSum = 0
-for i in range(CROSS_VAL):
-    model = MLPRegressor(solver = 'adam', activation = 'relu', hidden_layer_sizes = [128,128,128, 128], max_iter=1000)
-    model.fit(xTrain, yTrain)
-    pred = model.predict(targetAtts)[0]
-    predSum += pred
-pred = predSum/CROSS_VAL
+    targetAtts = dataArray[dataArray.shape[0]-TARGET_PERIOD,:-1]
+    targetAtts = targetAtts.reshape(1, -1)
+    xTrain = dataArray[:dataArray.shape[0]-TARGET_PERIOD,:-1]
+    yTrain = dataArray[:dataArray.shape[0]-TARGET_PERIOD,-1]
 
-print(pred)
+    #print(targetAtts.shape)
+    #print(targetLabel.shape)
+    #print(xTrain.shape)
+    #sprint(yTrain.shape)
 
-#quote_info = trader.quote_data(STOCK)
-#print(quote_info)
-#stock_instrument = trader.instruments(STOCK)[0]
+    #print(targetAtts)
+    #print(xTrain[len(xTrain)-1])
+
+    CROSS_VAL = 10
+    predSum = 0
+    for i in range(CROSS_VAL):
+        model = MLPRegressor(solver = 'adam', activation = 'relu', hidden_layer_sizes = [128,128,128, 128], max_iter=1000)
+        model.fit(xTrain, yTrain)
+        pred = model.predict(targetAtts)[0]
+        predSum += pred
+    pred = predSum/CROSS_VAL
+    periodSum += pred
+    print(str(date), " | ", STOCK, " | ", PERIOD, " | ", pred)
+
+truePrediction = periodSum/len(periodArr)
+print("Prediction: ", truePrediction)

@@ -33,7 +33,6 @@ def sub_business_days(from_date, sub_days):
     business_days_to_sub = sub_days
     current_date = from_date
     while business_days_to_sub > 0:
-        df = pdr.get_data_yahoo(STOCK, start=startDate)
         current_date -= timedelta(days=1)
         weekday = current_date.weekday()
         if weekday >= 5: # sunday = 6
@@ -115,7 +114,6 @@ print("Loading Dataframe")
 dateArr = START_DATE.split("-")
 
 startDate = datetime(int(dateArr[0]), int(dateArr[1]), int(dateArr[2]))
-
 startDate = sub_business_days(startDate, PERIOD)
 
 print("hi")

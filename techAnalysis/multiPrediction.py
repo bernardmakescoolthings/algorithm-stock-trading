@@ -131,6 +131,7 @@ else:
 periodArr = [100, 150, 200, 250]
 
 startDate = datetime.today()
+#fileName ="output/predictions/test.txt"
 fileName = "output/predictions/" + str(startDate).split()[0] + ".txt"
 outFile = open(fileName, "w")
 
@@ -142,7 +143,7 @@ for stock in stockFile:
 
     for PERIOD in periodArr:
 
-        dateObj = sub_business_days(datetime.now(), 3)
+        dateObj = sub_business_days(datetime.now(), 1)
         dateStartObj = dateObj - timedelta(days=PERIOD)
 
         dateEnd = str(dateObj.year) + "-" + str(dateObj.month) + "-"+ str(dateObj.day)
@@ -207,7 +208,7 @@ for stock in stockFile:
         #df.drop(df.tail(TARGET_PERIOD).index,inplace=True)
 
         df["Label"] = labels
-        date = dateDf[len(dateDf)-1]
+        date = str(dateDf[len(dateDf)-1]).split()[0]
 
 
 
@@ -236,6 +237,7 @@ for stock in stockFile:
             pred = model.predict(targetAtts)[0]
             predSum += pred
         pred = predSum/CROSS_VAL
+        periodSum += pred
 
         print(date, " | ", stock, " | ", PERIOD, " | ", pred, file=outFile, flush=True)
 
