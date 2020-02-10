@@ -131,6 +131,7 @@ else:
 periodArr = [100, 150, 200, 250]
 
 startDate = datetime.today()
+#fileName ="output/predictions/test.txt"
 fileName = "output/predictions/" + str(startDate).split()[0] + ".txt"
 outFile = open(fileName, "w")
 
