@@ -143,7 +143,8 @@ for stock in stockFile:
 
     for PERIOD in periodArr:
 
-        dateObj = sub_business_days(datetime.now(), 1)
+        #dateObj = sub_business_days(datetime.now(), 1)
+        dateObj = datetime.now()
         dateStartObj = dateObj - timedelta(days=PERIOD)
 
         dateEnd = str(dateObj.year) + "-" + str(dateObj.month) + "-"+ str(dateObj.day)
