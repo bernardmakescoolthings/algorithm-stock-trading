@@ -1,13 +1,12 @@
 import pandas as pd
 import sys
 
-if len(sys.argv) != 3:
+if len(sys.argv) != 2:
     print("Error with command line arguments")
     sys.exit()
 else:
     DATE = sys.argv[1] #MONTH/DAY/YEAR
-    FILENAME = sys.argv[2]
-data = pd.read_csv(FILENAME)
+data = pd.read_csv('transactions.csv')
 
 stockDict = {};
 
