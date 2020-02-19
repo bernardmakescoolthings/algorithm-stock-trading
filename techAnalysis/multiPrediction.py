@@ -31,23 +31,23 @@ def populateDataframe(df):
 
     # ## Momentum Indicators
     df['Awesome'] = ta.momentum.ao(df['High'], df['Low'])
-    df['KAMA'] = ta.momentum.kama(df['Close'])
+    #df['KAMA'] = ta.momentum.kama(df['Close'])
     df['MFI'] = ta.momentum.money_flow_index(df['High'], df['Low'], df['Close'], df['Volume'])
     df['ROC'] = ta.momentum.roc(df['Close'])
-    df['RSI'] = ta.momentum.rsi(df['Close'])
+    #df['RSI'] = ta.momentum.rsi(df['Close'])
     df['Stochastic'] = ta.momentum.stoch(df['High'], df['Low'], df['Close'])
     df['Stochastic Signal'] = ta.momentum.stoch_signal(df['High'], df['Low'], df['Close'])
-    df['TSIIndicator'] = ta.momentum.tsi(df['Close'])
+    #df['TSIIndicator'] = ta.momentum.tsi(df['Close'])
     df['Ultimate'] = ta.momentum.uo(df['High'], df['Low'], df['Close'])
     df['WilliamsRI'] = ta.momentum.wr(df['High'], df['Low'], df['Close'])
-    df['kama'] = ta.momentum.kama(df['Close'])
+    #df['kama'] = ta.momentum.kama(df['Close'])
     # ## Volume Indicators
-    df['ADI'] = ta.volume.acc_dist_index(df['High'], df['Low'], df['Close'], df['Volume'])
+    #df['ADI'] = ta.volume.acc_dist_index(df['High'], df['Low'], df['Close'], df['Volume'])
     df['ChaikinMF'] = ta.volume.chaikin_money_flow(df['High'], df['Low'], df['Close'], df['Volume'])
     df['EOM'] = ta.volume.ease_of_movement(df['High'], df['Low'], df['Volume'])
-    df['ForceIndex'] = ta.volume.force_index(df['Close'], df['Volume'])
-    df['NVI'] = ta.volume.negative_volume_index(df['Close'], df['Volume'])
-    df['OBV'] = ta.volume.on_balance_volume(df['Close'], df['Volume'])
+    #df['ForceIndex'] = ta.volume.force_index(df['Close'], df['Volume'])
+    #df['NVI'] = ta.volume.negative_volume_index(df['Close'], df['Volume'])
+    #df['OBV'] = ta.volume.on_balance_volume(df['Close'], df['Volume'])
     df['EoM'] = ta.volume.sma_ease_of_movement(df['High'], df['Low'], df['Volume'])
     df['VPT'] = ta.volume.volume_price_trend(df['Close'], df['Volume'])
     #df['ATR'] = ta.volatility.average_true_range(df['High'], df['Low'], df['Close'])
@@ -73,23 +73,23 @@ def populateDataframe(df):
     df['AroonUp'] = ta.trend.aroon_up(df['Close'])
     df['CCI'] = ta.trend.cci(df['High'], df['Low'], df['Close'])
     df['DPO'] = ta.trend.dpo(df['Close'])
-    df['EMA'] = ta.trend.ema_indicator(df['Close'])
+    #df['EMA'] = ta.trend.ema_indicator(df['Close'])
     df['Ichimoku_A'] = ta.trend.ichimoku_a(df['High'], df['Low'])
     df['Ichimoku_B'] = ta.trend.ichimoku_b(df['High'], df['Low'])
     df['KST'] = ta.trend.kst(df['Close'])
     df['KSTSignal'] = ta.trend.kst_sig(df['Close'])
-    df['MACD'] = ta.trend.macd(df['Close'])
-    df['MACDDiff'] = ta.trend.macd_diff(df['Close'])
-    df['MACDSignal'] = ta.trend.macd_signal(df['Close'])
-    df['MassIndex'] = ta.trend.mass_index(df['High'], df['Low'])
-    df['PSAR_Down'] = ta.trend.psar_down(df['High'], df['Low'], df['Close'])
-    df['PSAR_DownIndicator'] = ta.trend.psar_down_indicator(df['High'], df['Low'], df['Close'])
-    df['PSAR_Up'] = ta.trend.psar_up(df['High'], df['Low'], df['Close'])
-    df['PSAR_UpIndicator'] = ta.trend.psar_up_indicator(df['High'], df['Low'], df['Close'])
-    df['TRIX'] = ta.trend.trix(df['Close'])
+    #df['MACD'] = ta.trend.macd(df['Close'])
+    #df['MACDDiff'] = ta.trend.macd_diff(df['Close'])
+    #df['MACDSignal'] = ta.trend.macd_signal(df['Close'])
+    #df['MassIndex'] = ta.trend.mass_index(df['High'], df['Low'])
+    #df['PSAR_Down'] = ta.trend.psar_down(df['High'], df['Low'], df['Close'])
+    #df['PSAR_DownIndicator'] = ta.trend.psar_down_indicator(df['High'], df['Low'], df['Close'])
+    #df['PSAR_Up'] = ta.trend.psar_up(df['High'], df['Low'], df['Close'])
+    #df['PSAR_UpIndicator'] = ta.trend.psar_up_indicator(df['High'], df['Low'], df['Close'])
+    #df['TRIX'] = ta.trend.trix(df['Close'])
     df['VortexIndicatorNeg'] = ta.trend.vortex_indicator_neg(df['High'], df['Low'], df['Close'])
     df['VortexIndicatorPos'] = ta.trend.vortex_indicator_pos(df['High'], df['Low'], df['Close'])
-    df['CumulativeReturn'] = ta.others.cumulative_return(df['Close'])
+    #df['CumulativeReturn'] = ta.others.cumulative_return(df['Close'])
     df['DailyLogReturn'] = ta.others.daily_log_return(df['Close'])
     df['DailyReturn'] = ta.others.daily_return(df['Close'])
 
@@ -138,13 +138,10 @@ outFile = open(fileName, "w")
 stockFile = open("stocks.txt", "r")
 for stock in stockFile:
     stock = stock.split()[0]
-
     periodSum = 0
-
     for PERIOD in periodArr:
 
-        #dateObj = sub_business_days(datetime.now(), 1)
-        dateObj = datetime.now()
+        dateObj = datetime.now() - timedelta(days=6)
         dateStartObj = dateObj - timedelta(days=PERIOD)
 
         dateEnd = str(dateObj.year) + "-" + str(dateObj.month) + "-"+ str(dateObj.day)
@@ -164,7 +161,8 @@ for stock in stockFile:
             #difference = df.iloc[i + PERIOD].Close - df.iloc[i].Close
 
             #For one day do difference in open and Close
-            difference = df.iloc[i+TARGET_PERIOD].Close - df.iloc[i].Close
+            difference = df.iloc[i+TARGET_PERIOD].Close - df.iloc[i+1].Open
+            #difference = (df.iloc[i+TARGET_PERIOD].Close - df.iloc[i+1].Open)/df.iloc[i+1].Open
             #print(difference)
             #Can do binary here or regression
             #if(difference > 0):
@@ -230,7 +228,8 @@ for stock in stockFile:
         #print(targetAtts)
         #print(xTrain[len(xTrain)-1])
 
-        CROSS_VAL = 10
+        #CROSS_VAL = 10
+        CROSS_VAL = 3
         predSum = 0
         for i in range(CROSS_VAL):
             model = MLPRegressor(solver = 'adam', activation = 'relu', hidden_layer_sizes = [128,128,128, 128], max_iter=1000)
