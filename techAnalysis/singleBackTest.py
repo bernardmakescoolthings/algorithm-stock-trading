@@ -153,7 +153,7 @@ for i in range(len(df)):
 
 #df.to_csv("TmpDataframe.csv", sep='\t')
 
-dateDf = df['Date']
+#dateDf = df['Date']
 
 df = df.drop(['Date'], axis=1)
 
@@ -168,7 +168,7 @@ for i in range(30):
 sys.exit()
 """
 
-#df = df.drop(['Date', 'High', 'Low', 'Open', 'Close', 'Volume', 'Adj Close'], axis=1)
+df = df.drop(['Date', 'High', 'Low', 'Open', 'Close', 'Volume', 'Adj Close'], axis=1)
 df = df.fillna(0)
 
 # ## Clean Data
