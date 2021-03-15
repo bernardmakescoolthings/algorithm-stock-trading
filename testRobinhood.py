@@ -1,4 +1,4 @@
-from Robinhood import Robinhood # Robinhood api to check/buy/sell stocks
+from pyrh import Robinhood # Robinhood api to check/buy/sell stocks
 #from bs4 import BeautifulSoup # Webscraper
 #import requests
 import datetime # Getting current time
@@ -8,7 +8,7 @@ from pytz import timezone # Change timezone to est
 tz = timezone('EST')
 
 
-fileName = open("../cred", "r")
+fileName = open("../.cred", "r")
 contents = fileName.read()
 user = contents.split()[0]
 pwd = contents.split()[1]
